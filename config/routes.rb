@@ -1,4 +1,7 @@
 BidmcInitech::Application.routes.draw do
+  resources :user_groups
+
+
   resources :notifications
 
 
