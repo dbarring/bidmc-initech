@@ -1,5 +1,4 @@
 log/*
-config/database.yml
 tmp/*
 public/stylesheets/compiled/*
 .project
