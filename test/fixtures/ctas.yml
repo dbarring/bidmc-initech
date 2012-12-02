@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pi_id: 1
+  workflow_status: 1
+
+two:
+  pi_id: 1
+  workflow_status: 1

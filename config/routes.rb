@@ -1,5 +1,5 @@
 BidmcInitech::Application.routes.draw do
-  resources :cta
+  resources :ctas
 
 
   resources :user_groups

@@ -1,0 +1,25 @@
+<%= form_for(@cta) do |f| %>
+  <% if @cta.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cta.errors.count, "error") %> prohibited this cta from being saved:</h2>
+
+      <ul>
+      <% @cta.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pi_id %><br />
+    <%= f.number_field :pi_id %>
+  </div>
+  <div class="field">
+    <%= f.label :workflow_status %><br />
+    <%= f.number_field :workflow_status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

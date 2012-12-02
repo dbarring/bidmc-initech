@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Pi:</b>
+  <%= @cta.pi_id %>
+</p>
+
+<p>
+  <b>Workflow status:</b>
+  <%= @cta.workflow_status %>
+</p>
+
+
+<%= link_to 'Edit', edit_cta_path(@cta) %> |
+<%= link_to 'Back', ctas_path %>
