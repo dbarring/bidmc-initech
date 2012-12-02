@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129170124) do
+ActiveRecord::Schema.define(:version => 20121202224508) do
+
+  create_table "forms", :force => true do |t|
+    t.string   "part"
+    t.text     "content"
+    t.text     "cci_notes"
+    t.text     "irb_note"
+    t.integer  "revision_child_id"
+    t.integer  "editor_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
