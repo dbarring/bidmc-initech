@@ -80,4 +80,40 @@ class CtasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def document #renders the full document view
+
+  end
+
+  def add_form #adds a form of type passed in params
+
+  end
+
+  def set_status #changes the approval stage of the cta
+
+  end
+
+  def add_ci #adds user to cta as ci
+
+  end
+
+  def remove_ci #removes user from cta
+
+  end
+
+  def add_cci #adds user to cta as cci
+
+  end
+
+  def remove_cci #removes user from cta
+
+  end
+
+  def search #limits results based on params, renders search result page
+
+  end
+
+  def upload #attatches file to cta.
+
+  end
 end
