@@ -1,4 +1,7 @@
 BidmcInitech::Application.routes.draw do
+  resources :cta
+
+
   resources :forms
 
 
