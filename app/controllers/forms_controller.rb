@@ -80,4 +80,28 @@ class FormsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def check_in
+
+  end
+
+  def check_out
+
+  end
+
+  def printable
+
+  end
+
+  def set_status
+
+  end
+
+  def add_note
+
+  end
+
+  def version_revert
+
+  end
 end

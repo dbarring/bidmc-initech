@@ -80,4 +80,12 @@ class NotificationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def generate_dep_rep_notification
+
+  end
+
+  def generate_status_update_notification
+
+  end
 end

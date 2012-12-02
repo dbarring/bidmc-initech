@@ -1,11 +1,11 @@
 BidmcInitech::Application.routes.draw do
+  resources :cta
+
+
   resources :user_groups
 
 
   resources :notifications
-
-
-  resources :cta
 
 
   resources :forms
