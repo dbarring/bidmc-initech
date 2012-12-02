@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  part: MyString
+  content: MyText
+  cci_notes: MyText
+  irb_note: MyText
+  revision_child_id: 1
+  editor_id: 1
+
+two:
+  part: MyString
+  content: MyText
+  cci_notes: MyText
+  irb_note: MyText
+  revision_child_id: 1
+  editor_id: 1

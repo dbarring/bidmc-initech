@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Part:</b>
+  <%= @form.part %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @form.content %>
+</p>
+
+<p>
+  <b>Cci notes:</b>
+  <%= @form.cci_notes %>
+</p>
+
+<p>
+  <b>Irb note:</b>
+  <%= @form.irb_note %>
+</p>
+
+<p>
+  <b>Revision child:</b>
+  <%= @form.revision_child_id %>
+</p>
+
+<p>
+  <b>Editor:</b>
+  <%= @form.editor_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_form_path(@form) %> |
+<%= link_to 'Back', forms_path %>

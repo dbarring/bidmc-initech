@@ -1,0 +1,2 @@
+module CtaHelper
+end
