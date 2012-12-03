@@ -2,6 +2,10 @@
 
 <h2>Users</h2>
 
+<%= form_tag({action: 'search'})%>
+  <%= text_field :search, '', :placeholder => 'Enter search term...' %>
+  <%= submit_tag 'Search'%>
+
 <table>
   <tr>
     <th>First name</th>

@@ -82,6 +82,15 @@ class UsersController < ApplicationController
   end
 
   def search #filters results based on params, renders search result page
+    @search = params[:search].first rescue nil
+    searches = @search.split(' ') rescue []
+    @results = []
+    searches.each do |s|
+      @results.concat User.find_all_by_first_name(s)
+      @results.concat User.find_all_by_last_name(s)
+      @results.concat User.find_all_by_email(s)
+    end
+    @results.uniq!{|x| x.id}
     render 'search'
   end
 end

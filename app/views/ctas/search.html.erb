@@ -1,4 +1,4 @@
-<h1><%= @search || "Search Trials" %></h1>
+<h1><%= "Search Trials" + ((@search.nil?) ? '' : ' - ' + @search) %></h1>
 <br>
 <%= form_tag({action: 'search'})%>
   <%= text_field :search, '', placeholder: "Enter search term...", value: @search%>

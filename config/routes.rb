@@ -38,6 +38,7 @@ BidmcInitech::Application.routes.draw do
   resources :users do
     collection do
       post 'search'
+      get  'search'
     end
   end
 

@@ -2,7 +2,7 @@ class Form < ActiveRecord::Base
   attr_accessible :cci_notes, :content, :editor_id, :irb_note, :part, :revision_child_id
 
   def current_version #returns the current version of the form
-
+    return 
   end
 
   def version_history #returns a list of all previous versions of the form
@@ -17,7 +17,7 @@ class Form < ActiveRecord::Base
 
   end
 
-  def buld_current_version #used by current_version
+  def build_current_version #used by current_version
 
   end
 end
