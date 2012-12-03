@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def log_out #logs out the current user
   	session[:current_user] = nil
-  	render '/layouts/log_in', layout:false
+  	render '/layouts/log_in', layout: false
   end
 
   def check_login #checks that the user is logged in

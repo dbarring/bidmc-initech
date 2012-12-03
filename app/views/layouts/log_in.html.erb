@@ -1,0 +1,23 @@
+<br>
+<br>
+<br>
+<center>
+<%= image_tag('bidmc_logo.gif') %>
+<br>
+<br>
+<%= (params[:error]) %>
+<br>
+<%=	form_tag '/application/log_in' do |f| %>
+Email
+<%= text_field_tag :email, '' %>
+<br>
+Password
+<%= text_field_tag :password, '' %>
+<br>
+<br>
+<%= submit_tag 'Log in' %>
+<% end%>
+<u>
+	I forgot my password...
+</u>
+</center>
