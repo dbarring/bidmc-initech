@@ -1,14 +1,4 @@
 class FormsController < ApplicationController
-  # GET /forms
-  # GET /forms.json
-  def index
-    @forms = Form.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @forms }
-    end
-  end
 
   # GET /forms/1
   # GET /forms/1.json
@@ -90,7 +80,7 @@ class FormsController < ApplicationController
   end
 
   def printable #renders a printable version of the form
-
+    render 'printable'
   end
 
   def add_note #saves the cci or irb note

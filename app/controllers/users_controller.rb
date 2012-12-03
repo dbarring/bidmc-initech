@@ -82,6 +82,6 @@ class UsersController < ApplicationController
   end
 
   def search #filters results based on params, renders search result page
-
+    render 'search'
   end
 end

@@ -82,7 +82,7 @@ class CtasController < ApplicationController
   end
 
   def document #renders the full document view
-
+    render 'document'
   end
 
   def add_form #adds a form of type passed in params
@@ -110,7 +110,7 @@ class CtasController < ApplicationController
   end
 
   def search #limits results based on params, renders search result page
-
+    render 'search'
   end
 
   def upload #attatches file to cta.
