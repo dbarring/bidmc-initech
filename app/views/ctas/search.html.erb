@@ -1,0 +1,5 @@
+<h1><%= @search || "Search Trials" %></h1>
+<br>
+<%= form_tag({action: 'search'})%>
+  <%= text_field :search, '', placeholder: "Enter search term...", value: @search%>
+  <%= submit_tag 'Search'%>

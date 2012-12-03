@@ -11,7 +11,8 @@ BidmcInitech::Application.routes.draw do
       post 'upload'
     end
     collection do
-      get 'search'
+      post 'search'
+      get  'search'
     end
   end
 
@@ -36,7 +37,7 @@ BidmcInitech::Application.routes.draw do
 
   resources :users do
     collection do
-      get 'search'
+      post 'search'
     end
   end
 

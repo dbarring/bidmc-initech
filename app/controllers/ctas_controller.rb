@@ -3,7 +3,7 @@ class CtasController < ApplicationController
   # GET /ctas.json
   def index
     @ctas = Cta.all
-
+    @related_ctas = current_user.related_ctas
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @ctas }
@@ -15,7 +15,7 @@ class CtasController < ApplicationController
   def show
     @cta = Cta.find(params[:id])
     @cis = @cta.cis
-    
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cta }
@@ -93,7 +93,7 @@ class CtasController < ApplicationController
   def set_status #changes the approval stage of the cta
 
   end
-
+  
   def add_ci #adds user to cta as ci
 
   end
@@ -111,6 +111,7 @@ class CtasController < ApplicationController
   end
 
   def search #limits results based on params, renders search result page
+    @search = params[:search].first rescue nil
     render 'search'
   end
 

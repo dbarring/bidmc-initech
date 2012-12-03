@@ -1,12 +1,32 @@
-<h1>Listing ctas</h1>
+<h2>Your CTAs</h2>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Pi</th>
     <th>Workflow status</th>
-    <th></th>
-    <th></th>
+  </tr>
+
+<% @related_ctas.each do |cta| %>
+  <tr>
+    <td><%= link_to cta.name, cta%></td>
+    <td><%= User.find(cta.pi_id).full_name %></td>
+    <td><%= cta.workflow_status %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>All CTAs</h2>
+
+<%= form_tag({action: 'search'})%>
+  <%= text_field :search, '', :placeholder => 'Enter search term...' %>
+  <%= submit_tag 'Search'%>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Pi</th>
+    <th>Workflow status</th>
   </tr>
 
 <% @ctas.each do |cta| %>
@@ -14,8 +34,6 @@
     <td><%= link_to cta.name, cta%></td>
     <td><%= User.find(cta.pi_id).full_name %></td>
     <td><%= cta.workflow_status %></td>
-    <td><%= link_to 'Edit', edit_cta_path(cta) %></td>
-    <td><%= link_to 'Destroy', cta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
