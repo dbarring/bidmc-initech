@@ -81,27 +81,23 @@ class FormsController < ApplicationController
     end
   end
 
-  def check_in
+  def check_in #sets editor_id to nil, freeing form up for editting
 
   end
 
-  def check_out
+  def check_out #sets editor_id to current_user for editing
 
   end
 
-  def printable
+  def printable #renders a printable version of the form
 
   end
 
-  def set_status
+  def add_note #saves the cci or irb note
 
   end
 
-  def add_note
-
-  end
-
-  def version_revert
+  def version_revert #reverts to previous version, leaving a new version indicating the action
 
   end
 end

@@ -1,18 +1,49 @@
 BidmcInitech::Application.routes.draw do
-  resources :ctas
-
+  resources :ctas do
+    member do
+      get 'document'
+      post 'add_form'
+      post 'set_status'
+      post 'add_ci'
+      post 'add_cci'
+      post 'remove_ci'
+      post 'remove_cci'
+      post 'upload'
+    end
+    collection do
+      get 'search'
+    end
+  end
 
   resources :user_groups
 
+  resources :notifications do
+    collection do
+      post 'generate_dep_rep_notification'
+      post 'generate_status_update_notification'
+    end
+  end
 
-  resources :notifications
+  resources :forms do
+    member do 
+      post 'check_in'
+      post 'check_out'
+      get 'printable'
+      post 'add_note'
+      post 'version_revert'
+    end
+  end
 
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end
 
-  resources :forms
+  match 'application/log_in' => 'application#log_in'
+  match 'application/log_out' => 'application#log_out'
 
-
-  resources :users
-
+  root :to => 'ctas#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

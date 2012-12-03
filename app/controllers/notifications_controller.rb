@@ -81,11 +81,11 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def generate_dep_rep_notification
+  def generate_dep_rep_notification #generates and sends an email to member of department user group
 
   end
 
-  def generate_status_update_notification
+  def generate_status_update_notification #generates and sends emails to all users related to the current stage of the cta
 
   end
 end
