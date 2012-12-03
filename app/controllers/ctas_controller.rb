@@ -14,7 +14,8 @@ class CtasController < ApplicationController
   # GET /ctas/1.json
   def show
     @cta = Cta.find(params[:id])
-
+    @cis = @cta.cis
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cta }

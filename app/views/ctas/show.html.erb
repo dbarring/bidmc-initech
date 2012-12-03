@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @cta.name %></h1>
 <p>
-  <b>Pi:</b>
-  <%= @cta.pi_id %>
+  <h3>Investigators:</h3>
+  <b>Primary Investigator</b><br>
+  <%= User.find(@cta.pi_id).full_name %>
+  <br>
+  <b><%= "Collaborative " + ((@cis.length>1) ? "Investigators" : "Investigator") %></b>
+  <% @cis.each do |u| %>
+  	<br>
+  	<%= u.full_name %>
+  	<% end %>
 </p>
 
 <p>
   <b>Workflow status:</b>
   <%= @cta.workflow_status %>
 </p>
-
-
-<%= link_to 'Edit', edit_cta_path(@cta) %> |
-<%= link_to 'Back', ctas_path %>

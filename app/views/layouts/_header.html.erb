@@ -1,0 +1,11 @@
+<div id='header'>
+<%= link_to image_tag('bidmc_logo.gif'), '/'=%>
+<div style='float:right;text-align:right'>
+	Logged in as
+	<%= link_to User.find(session[:current_user]).full_name, User.find(session[:current_user]) %>
+	<br>
+	<%= link_to "0 Notifications", controller: 'notifications', action: 'index' %>
+	|
+	<%= link_to "Log out ", '/application/log_out' %>
+</div>
+</div>

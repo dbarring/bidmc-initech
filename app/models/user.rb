@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name #returns firstname lastname
-
+  	self.first_name + ' ' + self.last_name
   end
 
   def get_permissions #returns all Usergroups self is in
