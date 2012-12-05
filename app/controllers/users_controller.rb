@@ -86,9 +86,8 @@ class UsersController < ApplicationController
     searches = @search.split(' ') rescue []
     @results = []
     searches.each do |s|
-      @results.concat User.find_all_by_first_name(s)
-      @results.concat User.find_all_by_last_name(s)
-      @results.concat User.find_all_by_email(s)
+      users = User.all.delete_if{|u| u.full_name.downcase.index(s.downcase).nil? and u.email.downcase.index(s.downcase).nil?}
+      @results.concat users
     end
     @results.uniq!{|x| x.id}
     render 'search'
