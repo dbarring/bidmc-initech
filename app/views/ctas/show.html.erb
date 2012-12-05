@@ -2,7 +2,6 @@
 
 <h1><%= @cta.name %></h1>
 <p>
-  <h3>Investigators:</h3>
   <b>Primary Investigator: </b>
   <%= User.find(@cta.pi_id).full_name %>
   <br>
@@ -19,5 +18,5 @@
 
 <p>
   <b>Workflow status:</b>
-  <%= @cta.workflow_status %>
+  <%= @cta.get_status %>
 </p>
