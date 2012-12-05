@@ -11,11 +11,12 @@ class ApplicationController < ActionController::Base
     		redirect_to root_url
     	else
     		@error = 'Invalid Password/Email'
+        render '/layouts/log_in', layout: false
     	end
     else
       @error = "Invalid Email/Password."
+      render '/layouts/log_in', layout: false
     end
-    render '/layouts/log_in', layout: false
   end
 
   def log_out #logs out the current user
