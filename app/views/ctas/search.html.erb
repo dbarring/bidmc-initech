@@ -3,3 +3,7 @@
 <%= form_tag({action: 'search'})%>
   <%= text_field :search, '', placeholder: "Enter search term...", value: @search%>
   <%= submit_tag 'Search'%>
+
+  <h3> No results found </h3>
+
+  <%= link_to 'Back to CTA index', root_path %>
