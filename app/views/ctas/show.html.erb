@@ -3,14 +3,18 @@
 <h1><%= @cta.name %></h1>
 <p>
   <h3>Investigators:</h3>
-  <b>Primary Investigator</b><br>
+  <b>Primary Investigator: </b>
   <%= User.find(@cta.pi_id).full_name %>
   <br>
-  <b><%= "Collaborative " + ((@cis.length>1) ? "Investigators" : "Investigator") %></b>
-  <% @cis.each do |u| %>
-  	<br>
-  	<%= u.full_name %>
+  <% if @cis.length == 1 %>
+    <b><%="Collaborative Investigator: #{@cis.first.full_name}"%></b>
+  <% elsif @cis.length > 1 %>
+    <b>Collaborative Investigators:/b>
+    <% @cis.each do |u| %>
+  	 <br>
+  	 <%= u.full_name %>
   	<% end %>
+  <% end %>
 </p>
 
 <p>

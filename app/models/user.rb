@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :password, :email
 
+  #to add: internal mailing address, telephone, pager, fax
+
   def proper_name #returns lastname, firstname
   	return self.last_name + ', ' + self.first_name
   end

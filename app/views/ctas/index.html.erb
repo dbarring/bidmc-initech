@@ -1,27 +1,35 @@
-<h2>Your CTAs</h2>
+<%if @related_ctas.length > 0 %>
+  <h2>Your CTAs</h2>
+<br><br>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Pi</th>
+      <th>Workflow status</th>
+    </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Pi</th>
-    <th>Workflow status</th>
-  </tr>
+  <% @related_ctas.each do |cta| %>
+    <tr>
+      <td><%= link_to cta.name, cta%></td>
+      <% user = User.find(cta.pi_id) %>
+      <td><%= link_to user.full_name,  user%></td>
+      <td><%= cta.workflow_status %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<% @related_ctas.each do |cta| %>
-  <tr>
-    <td><%= link_to cta.name, cta%></td>
-    <td><%= User.find(cta.pi_id).full_name %></td>
-    <td><%= cta.workflow_status %></td>
-  </tr>
-<% end %>
-</table>
 
-<h2>All CTAs</h2>
+  <br>
+  <hr>
+  <br>
+<%end%>
 
-<%= form_tag({action: 'search'})%>
+<h2 class=inline>All CTAs &nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+<%= form_tag({action: 'search'}, class: 'inline')%>
   <%= text_field :search, '', :placeholder => 'Enter search term...' %>
   <%= submit_tag 'Search'%>
-
+<br><br>
 <table>
   <tr>
     <th>Name</th>
@@ -32,7 +40,8 @@
 <% @ctas.each do |cta| %>
   <tr>
     <td><%= link_to cta.name, cta%></td>
-    <td><%= User.find(cta.pi_id).full_name %></td>
+    <% user = User.find(cta.pi_id) %>
+    <td><%= link_to user.full_name, user %></td>
     <td><%= cta.workflow_status %></td>
   </tr>
 <% end %>
@@ -41,5 +50,4 @@
 <br />
 
 <%= link_to 'New Cta', new_cta_path %> <br>
-<%= link_to 'Search', action: 'search' %> <br>
 <%= link_to 'Admin Panel', controller: 'users', action: 'index' %>

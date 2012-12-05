@@ -1,0 +1,1 @@
+CTA_STATUS = ["Drafting", "CCI Review", "IRB Review", "Approved", "Rejected"]

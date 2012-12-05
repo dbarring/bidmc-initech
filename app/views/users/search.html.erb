@@ -4,28 +4,24 @@
   <%= text_field :search, '', :placeholder => 'Enter search term...', value: @search %>
   <%= submit_tag 'Search'%>
 
-<table>
-	<tr>
-		<th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @results.length > 0 %>
+	<br><br>
+	<table>
+		<tr>
+			<th>Name</th>
+		    <th>Email</th>
+	  </tr>
 
-<% @results.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+	<% @results.each do |user| %>
+	  <tr>
+	    <td><%= link_to user.full_name, user %></td>
+	    <td><%= user.email %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<h3> No results found </h3>
 <% end %>
-</table>
-
 <br />
 
-<%= link_to 'Back to results', users_path %> <br>
+<%= link_to 'Back to Admin Control Panel', users_path %> <br>
