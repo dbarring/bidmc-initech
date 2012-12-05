@@ -18,7 +18,7 @@ class Cta < ActiveRecord::Base
   end
 
   def get_status #returns the status of the cta
-    return '<status>'
+    return CTA_STATUS[self.workflow_status]
   end
 
   def set_status #changes the status of the cta

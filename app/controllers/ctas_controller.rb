@@ -41,6 +41,7 @@ class CtasController < ApplicationController
   # POST /ctas
   # POST /ctas.json
   def create
+    params[:cta][:workflow_status] = 0
     @cta = Cta.new(params[:cta])
 
     respond_to do |format|

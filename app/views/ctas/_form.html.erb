@@ -12,12 +12,9 @@
   <% end %>
 
   <div class="field">
+    <% users = User.all %>
     <%= f.label :pi_id %><br />
-    <%= f.number_field :pi_id %>
-  </div>
-  <div class="field">
-    <%= f.label :workflow_status %><br />
-    <%= f.number_field :workflow_status %>
+    <%= f.select :pi_id, options_from_collection_for_select(users, :id, :email) %>
   </div>
   <div class="actions">
     <%= f.submit %>
