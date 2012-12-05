@@ -5,7 +5,9 @@
 <%= image_tag('bidmc_logo.gif') %>
 <br>
 <br>
-<%= (params[:error]) %>
+<div id=error_explaination>
+	<%= @error %>
+</div>
 <br>
 <%=	form_tag '/application/log_in' do |f| %>
 Email

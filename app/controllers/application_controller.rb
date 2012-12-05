@@ -4,14 +4,18 @@ class ApplicationController < ActionController::Base
   before_filter :check_login, except: [:log_in]
 
   def log_in #logs in the current user
-  	@user = User.find_by_email(params[:email])
-  	if @user.password == params[:password]
-  		session[:current_user] = @user.id
-  		redirect_to root_url
-  	else
-  		params[:error] = 'Log in failed'
-  		render '/layouts/log_in', layout: false
-  	end
+  	@user = User.find_by_email(params[:email]) rescue nil
+    unless @user.nil?
+    	if @user.password == params[:password]
+    		session[:current_user] = @user.id
+    		redirect_to root_url
+    	else
+    		@error = 'Invalid Password/Email'
+    	end
+    else
+      @error = "Invalid Email/Password."
+    end
+    render '/layouts/log_in', layout: false
   end
 
   def log_out #logs out the current user
