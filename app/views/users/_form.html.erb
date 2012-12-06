@@ -24,9 +24,17 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.label "Change Password" %><br />
+    <%= f.password_field :password %>
   </div>
+<% if current_user.id == @user.id %>
+  <hr>
+  <br />
+  <div class="field">
+    <%= f.label "Current Password" %><br />
+    <%= password_field_tag :curr_password, '' %>
+  </div>
+<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

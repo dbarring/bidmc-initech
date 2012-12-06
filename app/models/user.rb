@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def related_ctas #returns all ctas self is related to
   	return []
   end
+
+  def is_password? password
+    return (password == self.password)
+  end
 end
