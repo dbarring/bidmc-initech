@@ -59,7 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.is_password? params[:curr_password]
+      if current_user.is_password? params[:curr_password]
         params[:user][:password] = params[:curr_password] if params[:user][:password] = ''
         if @user.update_attributes(params[:user])
           format.html { redirect_to @user, notice: 'User was successfully updated.' }

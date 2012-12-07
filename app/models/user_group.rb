@@ -13,3 +13,11 @@ class UserGroup < ActiveRecord::Base
 
   end
 end
+
+class Permission < UserGroup
+
+end
+
+class CtaRelation < UserGroup
+
+end

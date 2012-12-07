@@ -21,7 +21,13 @@ class User < ActiveRecord::Base
   end
 
   def related_ctas #returns all ctas self is related to
-  	return []
+  	ctas = []
+    ctas.concat Cta.find_all_by_pi_id(self.id)
+    #ctas.concat ci ctas
+    #ctas.concat dep rep ctas
+    #ctas.concat cci ctas
+    #ctas.concat irb ctas
+    return ctas
   end
 
   def is_password? password
