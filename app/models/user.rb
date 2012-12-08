@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   	return self.first_name + ' ' + self.last_name
   end
 
+  def has_permission? permission
+    return true
+  end
+
   def get_permissions #returns all Usergroups self is in
   	return []
   end

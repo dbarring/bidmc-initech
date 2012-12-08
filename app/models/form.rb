@@ -25,12 +25,11 @@ class Form < ActiveRecord::Base
 
   end
 
-  def hash_contents
+  def hash_content
     return YAML.load(self.content)
   end
 
   def format_content
-    puts 'heelo'
     self.default_content if new_record?
     self.content = self.content.to_yaml if self.content.class == Hash
   end
@@ -43,16 +42,12 @@ class Form < ActiveRecord::Base
       self.content = {b1:nil, b2:nil,b3: { a:nil, b:nil, c:nil},b4:nil, b5:nil, b6:nil, b7:nil, b8:nil, b9: {yes:nil, content:nil}}
     when "C"
       self.content = {nursing:nil, units_Signatures: { inpatient_units: {content:nil, signature:nil},outpatientunits: {content:nil, signature:nil}}}
-    when "D"
-      self.content = {}
     when "E"
       self.content = {e1:{ investigational:nil, ind_num:nil, fda_restrict:nil,fda_restrict_explanation:nil}, approval_status: {marketed:nil,fda_approved:nil,marketed_not_fda: {fnm1:nil,fnm2:nil,fnm3:nil,fnm4:nil,fnm5:nil},fda_not_marketed: {fnm_ind:nil,fnm_assigned:nil,fnm_citi:nil },authorized:nil},e2: {generic_name:nil,trade_name:nil,manufacturer:nil,primary_actions:nil,how_specified:nil,route_of_admin:nil,carriers_preservatives:nil,special_handling:nil,therapeutic_use:nil,dose:nil,side_effects:nil,antidotes:nil,appended_material: {brochure:nil,pharmacology:nil,toxicology:nil,experience:nil,protocol:nil},},e3: {sponser_provides:nil,charged_pi:nil,charged_patient:nil},e4: {dispensed_pharmacy:nil,where_dispensed:nil,investigator_supply:nil,prescribers:nil,east_campus:nil,west_campus:nil,authorized_to_adminitrate:nil},e5: {room_temp:nil,refrigeration:nil,freezer_warm:nil,freezer_cold:nil,other:nil},e6: {special_equipment:nil,equipment_list:nil},e7: {oral:nil,topical:nil,chemo:nil,non_chemo:nil,live_biologic:nil,other:nil},e8: {received_for_review:nil,date_approved:nil}}
     when "F"
       self.content = {f1: {diagnostic_xray:nil,diagnostic_radioactive:nil,therapeutic_radiation:nil,therapeutic_radioactive:nil,},f2: {xray_exposure:nil,nuclear_medicine:nil,radioisotope:nil,physician_name:nil,isotope:nil,chemical_form:nil,dose:nil,mode:nil,},f3: {received:nil,approved:nil,approval_date:nil,not_need_review:nil}}
     when "G"
       self.content = {g1: {authorized_users:nil,device_name_full:nil,device_manufacturer:nil,sponsor:nil,device_type:nil},g2:  {marketed_aproved:nil,marketed_not_approved:nil,not_marketed_not_FDA:nil,exempt:{legally_marketed:nil,label_complies:nil,preference_testing:nil,early_distrobution:nil,substantially_equivilent:nil,custom_device:nil},no_risk_device:{explanation:nil,no_banned:nil,cfr:nil,irb_approval:nil,informed_consent:nil,monitoring_investigations:nil,records:nil,no_promotion:nil},high_risk: {cat_a:nil,cat_b:nil,ide_num:nil,company:nil,citi_gcp: {yes:nil,no:nil,na:nil},interval:nil,restrictions:nil,explain_yes:nil}},g3: {cde_safe:{yes:nil,no:nil,na:nil}},g4: {location:nil,dispensing:nil},g5: {cost:nil,who_paying:nil},g6:{ide_attachment:nil,no_risk_attachment:nil,device_brochure:nil}}
-    when "H"
-      self.content = {}
     when "J"
       self.content = {j1: {infectious_agent:nil,xeno_transplantation:nil,non_human_materials:nil},j2: {approved: {yes_when:nil},non_aproved: {agent_name:nil,airbourne:nil,enteric:nil,percutaneous:nil,skin:nil,bidmc_pharmacy:nil,pharm_company:nil ,other:nil,transport_vehicle:nil,injection:nil,topical:nil,intravenous:nil,ingestion:nil ,impatient:nil,outpatient:nil,disposal:nil,agent_subcept:nil,no_percautions:nil,standard:nil,contact:nil ,respiratory:nil}},j3: {under_review:nil,approved:nil,no_review:nil},comments:nil}
     when "K"
@@ -62,7 +57,7 @@ class Form < ActiveRecord::Base
     when "M"
       self.content = {do_q1:nil,do_q2:nil,do_q3:nil,do_q4:nil,do_q5:nil,do_q6:nil,do_q7:nil,  q_1_a:nil,q_1_b:nil,q_4_a:nil,q_4_b:nil,q_4_c:nil,q_5_a:nil,q_5_b:nil,q_5_c:nil,q_5_d:nil,    q_6_a:nil,q_6_b:nil,q_6_c:nil,q_7_a:nil,q_7_b:nil}
     when "N"
-      self.content = {sample_type:nil,sample_size:nil,no_more_sample:nil,more_sample:nil,no_disease_samples:nil,how_many_samples:nil,specimen_time: {start:nil,end_date:nil}, sample_sources: {bidmc_path:nil,repository:nil,other:nil}, study_duration:nil,no_identifiers:nil,identifiers: {contact_pats:nil,if_yes_exp:nil}, human_discard:nil,sample_profit:nil,if_profit_exp:nil,data_use: {public_b:nil,present:nil,other:nil}related_research:nil}
+      self.content = {sample_type:nil,sample_size:nil,no_more_sample:nil,more_sample:nil,no_disease_samples:nil,how_many_samples:nil,specimen_time: {start:nil,end_date:nil}, sample_sources: {bidmc_path:nil,repository:nil,other:nil}, study_duration:nil,no_identifiers:nil,identifiers: {contact_pats:nil,if_yes_exp:nil}, human_discard:nil,sample_profit:nil,if_profit_exp:nil,data_use: {public_b:nil,present:nil,other:nil},related_research:nil}
     when "O"
       self.content = {name_pi:nil,name_ci:nil,mail_address:nil,email_address:nil,pi_phonenumber:nil,pi_pagernumber:nil,pi_Fax:nil,fund_source:nil,mri: {patient_info:nil,psych_records:nil,record_amount:nil,timePeriod_f:nil,timePeriod_t:nil,sourceInfo:nil,studyTime:nil,identifiers:nil,contactPatients:nil,why_cp:nil,confidentiality:nil,patient_IndInfo:nil,data_results:nil,form_relate_n:nil}}
     when "P"

@@ -15,6 +15,10 @@ class Cta < ActiveRecord::Base
     'cta_'+self.id.to_s
   end
 
+  def add_form part
+    Form.create({part:part, cta_id:self.id})
+  end
+
   def forms #reutnrs all forms that are associated with the cta
     return Form.find_all_by_cta_id(self.id)
   end

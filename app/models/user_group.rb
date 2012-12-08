@@ -15,7 +15,7 @@ class UserGroup < ActiveRecord::Base
 end
 
 class Permission < UserGroup
-
+	#admin, irb, cci, investigator, dep_rep
 end
 
 class CtaRelation < UserGroup

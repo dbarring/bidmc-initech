@@ -26,12 +26,8 @@ class CtasController < ApplicationController
   # GET /ctas/new
   # GET /ctas/new.json
   def new
-    @cta = Cta.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @cta }
-    end
+    @cta = Cta.create({workflow_status: 0, pi_id: current_user.id})
+    redirect_to (@cta.add_form 'A'), action: :edit
   end
 
   # GET /ctas/1/edit
