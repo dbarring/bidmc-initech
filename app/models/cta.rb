@@ -1,6 +1,8 @@
 class Cta < ActiveRecord::Base
   attr_accessible :pi_id, :workflow_status
 
+  has_many :forms
+
   def cis #returns all Users that are cis on cta
     return []
   end
@@ -14,7 +16,7 @@ class Cta < ActiveRecord::Base
   end
 
   def forms #reutnrs all forms that are associated with the cta
-    return []
+    return Form.find_all_by_cta_id(self.id)
   end
 
   def get_status #returns the status of the cta

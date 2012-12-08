@@ -15,6 +15,7 @@ class CtasController < ApplicationController
   def show
     @cta = Cta.find(params[:id])
     @cis = @cta.cis
+    @forms = @cta.forms
 
     respond_to do |format|
       format.html # show.html.erb

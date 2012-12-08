@@ -20,3 +20,18 @@
   <b>Workflow status:</b>
   <%= @cta.get_status %>
 </p>
+
+<table>
+  <tr>
+    <th>Form</th>
+    <th>Status</th>
+    <th>Last Edited</th>
+  </tr>
+  <% @forms.each do |f| %>
+    <tr>
+      <td><%= link_to f.part, f %></td>
+      <td><%= f.status %></td>
+      <td><%= f.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
