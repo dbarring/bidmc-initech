@@ -33,7 +33,7 @@ def build_edit hash, path, f, whitespace, form='f'
     when Fixnum
       f.puts "#{w}<%= #{form}.number_field :#{key}, value: (@contents#{path}[:#{key}] rescue nil) %>"
     when TrueClass
-      f.puts "#{w}<%= #{form}.check_box :#{key}, value: (@contents#{path}[:#{key}] rescue nil) %>"
+      f.puts "#{w}<%= #{form}.check_box :#{key}, checked: (@contents#{path}[:#{key}]=='1' rescue false) %>"
     when String
       f.puts "#{w}<%= #{form}.text_field :#{key}, value: (@contents#{path}[:#{key}] rescue nil) %>"
     when Hash
