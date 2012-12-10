@@ -49,7 +49,7 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
 
     respond_to do |format|
-      if @form.update_attributes(params[:form])
+      if @form.update_attribute(:content, params[:content])
         format.html { redirect_to @form, notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else

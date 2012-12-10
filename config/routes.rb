@@ -27,6 +27,7 @@ BidmcInitech::Application.routes.draw do
 
   resources :forms do
     member do 
+      put 'edit'
       post 'check_in'
       post 'check_out'
       get 'printable'
