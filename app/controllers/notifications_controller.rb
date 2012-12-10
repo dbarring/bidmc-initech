@@ -81,7 +81,23 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def generate_dep_rep_notification #generates and sends an email to member of department user group
+  def generate_dep_rep_notification(pi_name, pi_email , to_email , form_name) #generates and sends an email to member of department user group
+        
+        # should we create an email just for demo? 
+        opts[:server]      ||= 'localhost'
+        opts[:from]        ||= 'email@example.com'
+        message << END_MESSAGE
+
+        From: #{opts[:pi_email]} <#{opts[:pi_name]}>
+        To:  <#{to_email}>
+        Subject: Depatemental Review Requirewd
+
+
+        END_MESSAGE
+
+        Net::SMTP.start(opts[:server]) do |smtp|
+        smtp.send_message msg, opts[:from], to
+      end
 
   end
 
