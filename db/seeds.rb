@@ -8,7 +8,7 @@ User.find_or_create_by_email('ccii@bidmc.com').update_attributes({first_name:'Br
 if Cta.all.length == 0
 	Cta.create({pi_id:User.find_by_email('admin@bidmc.com').id, workflow_status: 0}) do |c|
 		Form.create({part: 'A', cta_id: c.id})
-		Form.create({pars: 'B', cta_id: c.id})
+		Form.create({part : 'B', cta_id: c.id})
 	end
 	Cta.create({pi_id:User.find_by_email('admin@bidmc.com').id, workflow_status: 0}) do |c|
 		Form.create({part: 'A', cta_id: c.id})

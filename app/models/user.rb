@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates_format_of :password, with: /^((?=.*\d)(?=.*[a-z]).{6,20})/i, message: "must be more than 5 characters, and contain letters and numbers"
   validates_uniqueness_of :email
 
+  has_and_belongs_to_many :user_groups
+
   #to add: internal mailing address, telephone, pager, fax
 
   def proper_name #returns lastname, firstname

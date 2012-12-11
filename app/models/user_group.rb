@@ -1,5 +1,6 @@
 class UserGroup < ActiveRecord::Base
-  attr_accessible :name, :type
+  attr_accessible :name, :group_type
+  has_and_belongs_to_many :users
 
   def add_user #adds a user to the group
 
@@ -28,4 +29,10 @@ end
 
 class Department < UserGroup
 	#radiology, toxicology...
+  DEPARTMENT = {
+    :radiology=> 0,
+    :toxicology => 1,
+  }
+  
+  DEPARTMENT_NAME= ["Radiology", "Toxicology"]
 end
