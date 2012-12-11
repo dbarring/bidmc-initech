@@ -81,23 +81,33 @@ class NotificationsController < ApplicationController
     end
   end
 
-  def generate_dep_rep_notification(pi_name, pi_email , to_email , form_name) #generates and sends an email to member of department user group
+  def generate_dep_rep_notification(from , to , message, subject) #generates and sends an email to member of department user group
         
-        # should we create an email just for demo? 
-        opts[:server]      ||= 'localhost'
-        opts[:from]        ||= 'email@example.com'
-        message << END_MESSAGE
 
-        From: #{opts[:pi_email]} <#{opts[:pi_name]}>
-        To:  <#{to_email}>
-        Subject: Depatemental Review Requirewd
+    begin 
+          Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+          Net::SMTP.start(@smtp_info[:smtp_server], @smtp_info[:port], @smtp_info[:helo], @smtp_info[:username], @smtp_info[:password], @smtp_info[:authentication]) do |smtp|
+            
+          mailtext = <<EOF
+            From: #{from}
+            To: #{to}
+            Subject: #{subject}
+ 
+            #{message}
+
+EOF
+
+          smtp.send_message mailtext, from, to
+    end
+  
+    rescue => e  
+      raise "Exception occured: #{e} "
+        exit -1
+    end  
 
 
-        END_MESSAGE
 
-        Net::SMTP.start(opts[:server]) do |smtp|
-        smtp.send_message msg, opts[:from], to
-      end
+
 
   end
 
