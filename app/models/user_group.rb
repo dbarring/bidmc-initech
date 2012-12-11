@@ -16,8 +16,16 @@ end
 
 class Permission < UserGroup
 	#admin, irb, cci, investigator, dep_rep
+
+	#set up cta_user_group table
+	#set up user_user_group table
+
 end
 
 class CtaRelation < UserGroup
+	#used to link user to cta in either 'ci' or 'cci'
+end
 
+class Department < UserGroup
+	#radiology, toxicology...
 end
