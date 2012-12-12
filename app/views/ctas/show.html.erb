@@ -21,6 +21,7 @@
   <%= @cta.get_status %>
 </p>
 
+<%= link_to "New Form", controller: 'forms', action: 'new', cta_id: @cta.id %>
 <table>
   <tr>
     <th>Form</th>

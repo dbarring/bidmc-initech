@@ -1,3 +1,8 @@
+if true return false
+#the pages are now being invividually editted, don't run this.
+
+
+
 require "Date"
 
 bool = true
@@ -54,51 +59,54 @@ def build_show hash, path, f, whitespace
     case val
     when Date
       f.puts "#{whitespace}<b>#{key}:</b>"
-      f.puts "#{whitespace}<%= @contents#{path}[:#{key}] rescue '' %><br />"
+      f.puts "<%= @contents#{path}[:#{key}] rescue '' %><br />"
     when Fixnum
       f.puts "#{whitespace}<b>#{key}:</b>"
-      f.puts "#{whitespace}<%= @contents#{path}[:#{key}] rescue '' %><br />"
+      f.puts "<%= @contents#{path}[:#{key}] rescue '' %><br />"
     when TrueClass
       f.puts "#{whitespace}<b>#{key}:</b>"
-      f.puts "#{whitespace}<%= check_box_tag 'b', 'b', (@contents#{path}[:#{key}]=='0' ? false : 1), disabled:true %><br />"
+      f.puts "<%= check_box_tag 'b', 'b', ((@contents#{path}[:#{key}] rescue 0)=='0' ? false : 1), disabled:true %><br />"
     when String
       f.puts "#{whitespace}<b>#{key}:</b>"
-      f.puts "#{whitespace}<%= @contents#{path}[:#{key}] rescue '' %><br />"
+      f.puts "<%= @contents#{path}[:#{key}] rescue '' %><br />"
     when Hash
-      f.puts "#{whitespace}<p><h3>#{key}</h3>"
-      build_show val, path+"[:#{key}]", f, whitespace+'  '
-      f.puts "#{whitespace}</p>"
+      f.puts "#{whitespace}<b>#{key}:</b><br />"
+      build_show val, path+"[:#{key}]", f, whitespace+'&nbsp;&nbsp;'
     when Array
-      f.puts "#{whitespace}<p><h3>#{key}</h3>"
-      build_show val, path+"[:#{key}]", f, whitespace+'  '
-      f.puts "#{whitespace}</p>"
+      f.puts "#{whitespace}<b>#{key}:</b><br />"
+      build_show val, path+"[:#{key}]", f, whitespace+'&nbsp;&nbsp;'
     end
   end
 end
 
 if ARGV.include? 'edit'
+  puts 'forms/_form.html.erb being generated'
   File.open('app/views/forms/_form.html.erb', 'w+') do |f|
-    f.puts "<% @contents = @form.hash_content %>"
     forms.each do |key, val|
       f.puts "<% if @form.part == '#{key}' %>"
       f.puts "  <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>"
+      f.puts "    <%= submit_tag 'Save' %>"
       build_edit val, '', f, '    '
       f.puts "    <%= submit_tag 'Save' %>"
       f.puts "  <% end %>"
       f.puts "<% end %>"
     end
   end
+  puts 'sucess!'
 end
 if ARGV.include? 'show'
+  puts 'forms/show.html.erb being generated'
   File.open('app/views/forms/show.html.erb', 'w+') do |f|
-    f.puts "<% @contents = @form.hash_content %>"
+    f.puts "<%= link_to 'Edit', edit_form_path(@form) %> |
+<%= link_to 'Back', :back %>"
     forms.each do |key, val|
       f.puts "<% if @form.part == '#{key}' %>"
       f.puts "  <p id='notice'><%= notice %></p>"
-      build_show val, '', f, '  '
+      build_show val, '', f, '&nbsp;&nbsp;'
       f.puts "<% end %>"
     end
     f.puts "<%= link_to 'Edit', edit_form_path(@form) %> |
-<%= link_to 'Back', forms_path %>"
+<%= link_to 'Back',  %>"
   end
+  puts 'sucess!'
 end

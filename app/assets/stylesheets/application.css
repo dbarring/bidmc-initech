@@ -23,3 +23,12 @@ th {
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 }
+
+.form_header {
+	background-color: gray;
+	font-size: 14px;
+}
+
+.form_cont {
+	width: 100%;
+}
