@@ -38,13 +38,13 @@
   <%if (@current_permissions != nil) %>
     <table>
       <tr>
-        <th><h4>Name</h4></th>
-        <th><h4>Remove</h4></th>
+        <th>Name</th>
+        <th></th>
       </tr>
       <%@current_permissions.each do |p| %>
         <tr>
-          <th><%=p.name%>
-          <th> </th>
+          <td><%=p.name%></td>
+          <td><%=link_to "Remove", :controller => 'users', :action => 'remove_permission', :id => @user.id, :permission_name => p.name%></td>
         </tr>
       <%end %>
     </table>
