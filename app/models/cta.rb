@@ -2,6 +2,7 @@ class Cta < ActiveRecord::Base
   attr_accessible :pi_id, :workflow_status
 
   has_many :forms
+  has_one :cta_relation
 
   def cis #returns all Users that are cis on cta
     return []
