@@ -23,26 +23,8 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <%= "Current permissions: " %>
-  <%- @current_permissions = @user.user_groups.all.uniq%>
-  <%if (@current_permissions != nil) %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th></th>
-      </tr>
-      <%@current_permissions.each do |p| %>
-        <tr>
-          <td><%=p.name%></td>
-          <td><%=link_to "Remove", :controller => 'users', :action => 'remove_permission', :id => @user.id, :permission_name => p.name%></td>
-        </tr>
-      <%end %>
-    </table>
-  <%else%>
-    None
-  <%end%>
   <br>
-  <%- @permissions = UserGroup.find_all_by_group_type(1)%>
+  <% @permissions = UserGroup.find_all_by_group_type(1)%>
   <%= "Add permissions: " %>
   <%= select_tag :permissions, options_for_select(@permissions.collect{ |p| [p.name, p.id]}, selected: @user.get_permissions.collect{|j| j.id}), :multiple => true %>
   <br>
