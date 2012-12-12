@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def get_permissions #returns all Usergroups self is in
-  	return self.user_groups.find_all_by_group_type(1)
+  	return self.user_groups.find_all_by_group_type(1).uniq!
   end
 
   def related_ctas #returns all ctas self is related to

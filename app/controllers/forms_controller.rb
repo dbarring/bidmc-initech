@@ -4,7 +4,8 @@ class FormsController < ApplicationController
   # GET /forms/1.json
   def show
     @form = Form.find(params[:id])
-
+    @cta = Cta.find(@form.cta_id)
+    @contents = @form.hash_content
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @form }
@@ -15,7 +16,7 @@ class FormsController < ApplicationController
   # GET /forms/new.json
   def new
     @form = Form.new
-
+    @cta = Cta.find(params[:cta_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @form }
@@ -25,6 +26,11 @@ class FormsController < ApplicationController
   # GET /forms/1/edit
   def edit
     @form = Form.find(params[:id])
+    @contents = @form.hash_content
+    @investigators = User.all  #make this only users with investigator permission.
+    @users = User.all
+    redirect_to :back unless (@form.editor_id.nil? or @form.editor_id == current_user.id)
+    @form.update_attribute(:editor_id, current_user.id)
   end
 
   # POST /forms
@@ -50,6 +56,7 @@ class FormsController < ApplicationController
 
     respond_to do |format|
       if @form.update_attribute(:content, params[:content])
+        @form.update_attribute(:editor_id, nil)
         format.html { redirect_to @form, notice: 'Form was successfully updated.' }
         format.json { head :no_content }
       else

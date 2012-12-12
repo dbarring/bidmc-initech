@@ -23,16 +23,6 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <%if (current_user.id == @user.id)%>
-    <div class="field">
-      <%= f.label "Change Password" %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label "Current Password" %><br />
-      <%= password_field_tag :curr_password, '' %>
-    </div>
-  <%end%>
   <%= "Current permissions: " %>
   <%- @current_permissions = @user.user_groups.all.uniq%>
   <%if (@current_permissions != nil) %>
@@ -54,7 +44,7 @@
   <br>
   <%- @permissions = UserGroup.find_all_by_group_type(1)%>
   <%= "Add permissions: " %>
-  <%= select_tag :permissions, options_for_select(@permissions.collect{ |p| [p.name, p.id] }), :multiple => true %>
+  <%= select_tag :permissions, options_for_select(@permissions.collect{ |p| [p.name, p.id]}, selected: @user.get_permissions.collect{|j| j.id}), :multiple => true %>
   <br>
   <div class="actions">
     <%= f.submit %>
