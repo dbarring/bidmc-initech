@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
   validates_format_of :password, with: /^((?=.*\d)(?=.*[a-z]).{6,20})/i, message: "must be more than 5 characters, and contain letters and numbers"
   validates_uniqueness_of :email
 
+  has_and_belongs_to_many :user_groups
+
   #to add: internal mailing address, telephone, pager, fax
 
   def proper_name #returns lastname, firstname
-  	return self.last_name + ', ' + self.first_name
+  	return self.last_name + ', ' + self.first
   end
 
   def full_name #returns firstname lastname
@@ -17,11 +19,11 @@ class User < ActiveRecord::Base
   end
 
   def has_permission? permission
-    return true
+    return !self.user_groups.find_by_name(permission).nil?
   end
 
   def get_permissions #returns all Usergroups self is in
-  	return []
+  	return self.user_groups.find_all_by_group_type(1)
   end
 
   def related_ctas #returns all ctas self is related to

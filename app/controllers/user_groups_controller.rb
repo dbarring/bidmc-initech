@@ -40,7 +40,16 @@ class UserGroupsController < ApplicationController
   # POST /user_groups
   # POST /user_groups.json
   def create
-    @user_group = UserGroup.new(params[:user_group])
+    tmp = UserGroup.new
+    if (params[:user_group][:group_type] == 1)
+      @user_group = Permission.new(params[:user_group])
+    elsif (params[:user_group][:group_type] == 2)
+      @user_group = CtaRelation.new(params[:user_group])
+    elsif (params[:user_group][:group_type] == 3)
+      @user_group = Department.new(params[:user_group])
+    else
+      @user_group = UserGroup.new(params[:user_group])
+    end
 
     respond_to do |format|
       if @user_group.save

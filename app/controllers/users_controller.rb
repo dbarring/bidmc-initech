@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    @permissions = UserGroup.find_all_by_group_type(1)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +36,18 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @current_permissions = @user.user_groups.all
+    @permissions = UserGroup.find_all_by_group_type(1)
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    params[:permissions].each do |p|
+      @user.user_groups << UserGroup.find_by_name(p)
+    end
+    @user.user_groups.uniq!
 
     respond_to do |format|
       if @user.save
@@ -57,6 +64,10 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    params[:permissions].each do |p|
+      @user.user_groups << UserGroup.find(p)
+    end
+    @user.user_groups.uniq!
 
     respond_to do |format|
         if @user.update_attributes(params[:user])
