@@ -44,7 +44,7 @@
   <br>
   <%- @permissions = UserGroup.find_all_by_group_type(1)%>
   <%= "Add permissions: " %>
-  <%= select_tag :permissions, options_for_select(@permissions.collect{ |p| [p.name, p.id] }), :multiple => true %>
+  <%= select_tag :permissions, options_for_select(@permissions.collect{ |p| [p.name, p.id]}, selected: @user.get_permissions.collect{|j| j.id}), :multiple => true %>
   <br>
   <div class="actions">
     <%= f.submit %>
