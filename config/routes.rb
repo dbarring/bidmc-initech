@@ -3,7 +3,7 @@ BidmcInitech::Application.routes.draw do
     member do
       get 'document'
       post 'add_form'
-      get 'set_status'
+      post 'set_status'
       post 'add_ci'
       post 'add_cci'
       post 'remove_ci'

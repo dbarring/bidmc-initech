@@ -91,8 +91,13 @@ class FormsController < ApplicationController
 
   def send_to_rep
     @form = Form.find(params[:id])
+    @user = User.find_by_email('deprepxray@gmail.com')
     if (@form.part == 'E')
-      Notification.generate_dep_rep_notification('bidmc.com' , 'danbarring@gmail.com' , 'Form E of Clinical Trial Application #' + Cta.find(@form.cta_id).id + ' requires your approval', 'CTA Signature Notification')
+      Mailer.dep_rep_notification(@user, @form).deliver
+      @form.update_attribute(:editor_id, @user.id)
+      redirect_to :back, notice: "Email sent successfully"
+    else
+      redirect_to :back, notice: "No related department found"
     end
   end
 

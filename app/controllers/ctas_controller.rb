@@ -15,7 +15,8 @@ class CtasController < ApplicationController
   def show
     UserGroup.new
     @cta = Cta.find(params[:id])
-    @cis = @cta.cis
+    @cis = @cta.cis.uniq!
+    @cis.delete(User.find(@cta.pi_id))
     @forms = @cta.forms
 
     respond_to do |format|
@@ -118,10 +119,11 @@ class CtasController < ApplicationController
     @cta = Cta.find(params[:id])
     puts '/n/n/n/n/n/n/n/n/n/n params[:status] == ' + params[:status].to_s + ' and @cta.pi_id == '+ @cta.pi_id.to_s + ' and current_user.id == ' + current_user.id.to_s
     puts (params[:status].class)
-    if (params[:status] == '2' and @cta.pi_id == current_user.id)
+    if ((params[:status] == '2' or params[:status]=='0') and @cta.pi_id == current_user.id)
       redirect_to :back
     else
       @cta.set_status params[:status] unless @cta == nil # cci
+      Mailer.cci_notification(User.find_by_email('deprepxray@gmail.com'), @cta).deliver
       redirect_to :action => "show", :id => @cta.id
     end
   end

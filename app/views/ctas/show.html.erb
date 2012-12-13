@@ -6,9 +6,9 @@
   <%= User.find(@cta.pi_id).full_name %>
   <br>
   <% if @cis.length == 1 %>
-    <b><%="Collaborative Investigator: #{@cis.first.full_name}"%></b>
+    <b>Collaborative Investigator: </b><%=" #{@cis.first.full_name}"%>
   <% elsif @cis.length > 1 %>
-    <b>Collaborative Investigators:/b>
+    <b>Collaborative Investigators:</b>
     <% @cis.each do |u| %>
   	 <br>
   	 <%= u.full_name %>
@@ -19,6 +19,12 @@
 <p>
   <b>Workflow status:</b>
   <%= @cta.get_status %>
+  <%if (@cta.workflow_status == 0) %>
+  <%= button_to "Submit to CCI", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 1 %>
+<%elsif (@cta.workflow_status == 1) %>
+  <%= button_to "Submit to IRB", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 2 %>
+  <%= button_to "Defer to Investigators", :controller => 'ctas', action: 'set_status', id: @cta.id, status: 0 %>
+<%end%>
 </p>
 
 <%= link_to "New Form", controller: 'forms', action: 'new', cta_id: @cta.id %>
@@ -36,9 +42,3 @@
     </tr>
   <% end %>
 </table>
-
-<%if (@cta.workflow_status == 0) %>
-  <%= link_to "Submit to CCI", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 1 %>
-<%elsif (@cta.workflow_status == 1) %>
-  <%= link_to "Submit to IRB", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 2 %>
-<%end%>

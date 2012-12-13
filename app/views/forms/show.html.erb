@@ -1,519 +1,131 @@
 <% @contents = @form.hash_content %>
 <%= link_to 'Edit', edit_form_path(@form) %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', @cta %>
 <% if @form.part == 'A' %>
   <p id='notice'><%= notice %></p>
-&nbsp;&nbsp;<b>full_board:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:full_board] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>expedited:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:expedited] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>A1:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>title:</b>
-<%= @contents[:A1][:title] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>short_title:</b>
-<%= @contents[:A1][:short_title] rescue '' %><br />
-&nbsp;&nbsp;<b>A2:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>pi_id:</b>
-<%= @contents[:A2][:pi_id] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>ci_ids:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>main_contact_id:</b>
-<%= @contents[:A2][:main_contact_id] rescue '' %><br />
-&nbsp;&nbsp;<b>A3:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>type:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:f] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:g] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>h:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:h] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>j:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:j] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>k:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:k] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>l:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:l] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>m:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:m] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>n:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:n] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>o:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:o] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>p:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:type][:p] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>p_e:</b>
-<%= @contents[:A3][:type][:p_e] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>design:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:design][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:design][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:design][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>phase:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i_ii:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:i_ii] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ii:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:ii] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ii_iii:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:ii_iii] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>iii:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:iii] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>iiii:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:iiii] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>other:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:phase][:other] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>other_e:</b>
-<%= @contents[:A3][:phase][:other_e] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>placebo:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A3][:placebo] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>A4:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ab:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:A][:ab] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ad:</b>
-<%= @contents[:A4][:A][:ad] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>bb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:A][:bb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ab:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:B][:ab] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>as:</b>
-<%= @contents[:A4][:B][:as] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>bs:</b>
-<%= @contents[:A4][:B][:bs] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>bb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:B][:bb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>cb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:B][:cb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>C:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a1:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>conflict:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:conflict] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>consulting:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:consulting] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>management:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:management] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>employment:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:employment] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>board_directors:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:board_directors] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>scientific_board:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:scientific_board] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>stock:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:stock] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>royalties:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:royalties] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ip_rights:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:ip_rights] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>author:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:author] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>gift:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:gift] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>loan:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:loan] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>other:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a1][:other] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>other_explained:</b>
-<%= @contents[:A4][:C][:a1][:other_explained] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a2:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a2] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a3:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A4][:C][:a3][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>s:</b>
-<%= @contents[:A4][:C][:a3][:s] rescue '' %><br />
-&nbsp;&nbsp;<b>A5:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>nurse:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:nurse] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>drugs:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:drugs] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>xray:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:xray] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>investigation:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:investigation] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>lab:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:lab] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>transfusion:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:transfusion] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>radio:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:radio] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>clinical:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:clinical] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>infectious:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:infectious] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>genetic:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:genetic] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>hazardous:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:hazardous] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>expedited:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:expedited] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>records:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:records] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>tissue:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:tissue] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>other:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A5][:other] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>A6:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>from:</b>
-<%= @contents[:A6][:from] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>to:</b>
-<%= @contents[:A6][:to] rescue '' %><br />
-&nbsp;&nbsp;<b>A7:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>others:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A7][:A][:others] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>num:</b>
-<%= @contents[:A7][:A][:num] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>lead:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A7][:B][:lead] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>institutions:</b><br />
-&nbsp;&nbsp;<b>A8:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>no_funding:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:no_funding] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>reason:</b>
-<%= @contents[:A8][:reason] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>yes_funding:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:yes_funding] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>industry:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:industry] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>federal:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:federal] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>foundation:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:foundation] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>internal:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:internal] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>free:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:free] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>industry:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:A][:industry] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>industry_entity:</b>
-<%= @contents[:A8][:A][:industry_entity] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>investigator_external:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:A][:investigator_external] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>investigator_external_entity:</b>
-<%= @contents[:A8][:A][:investigator_external_entity] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>investigator_internal:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:A][:investigator_internal] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>investigator_internal_entity:</b>
-<%= @contents[:A8][:A][:investigator_internal_entity] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>office_name:</b>
-<%= @contents[:A8][:B][:office_name] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>office_date:</b>
-<%= @contents[:A8][:B][:office_date] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ra_name:</b>
-<%= @contents[:A8][:B][:ra_name] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ra_date:</b>
-<%= @contents[:A8][:B][:ra_date] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>C:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>review:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:C][:review] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>approved:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:C][:approved] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>supported:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:C][:supported] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>other:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:C][:other] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>reason:</b>
-<%= @contents[:A8][:C][:reason] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>D:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dollars:</b>
-<%= @contents[:A8][:D][:dollars] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>non_monetary:</b>
-<%= @contents[:A8][:D][:non_monetary] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>one_site:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:D][:one_site] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>multi_site:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:D][:multi_site] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>fed_grant_yes:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:D][:fed_grant_yes] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>fed_grant_no:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:D][:fed_grant_no] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>institution:</b>
-<%= @contents[:A8][:D][:institution] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>defense:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:D][:defense] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>E:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b_y:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:E][:b_y] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b_n:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:E][:b_n] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>s:</b>
-<%= @contents[:A8][:E][:s] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>F:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>grant:</b>
-<%= @contents[:A8][:F][:grant] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g_date:</b>
-<%= @contents[:A8][:F][:g_date] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>funded:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:F][:funded] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>pending:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:F][:pending] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>G:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:f] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:g] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>h:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:h] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>j:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:j] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>k:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:k] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>l:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:l] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>m:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:m] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>n:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:n] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>o:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:o] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>p:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:p] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>q:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:q] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>r:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A8][:G][:r] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>A9:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:A][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:A][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A9][:A][:c] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= @contents[:A9][:B][:a] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= @contents[:A9][:B][:b] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A9][:B][:c] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= @contents[:A9][:B][:d] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= @contents[:A9][:B][:e] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= @contents[:A9][:B][:f] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= @contents[:A9][:B][:g] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>C:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:C][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:C][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:C][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:C][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>D:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:f] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:g] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>h:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:h] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>j:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:j] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>k:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:k] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>l:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:l] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>m:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:m] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>n:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:n] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>o:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:o] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>p:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:p] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>q:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:q] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>r:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:D][:r] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>ab:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:ab] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>bb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:bb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>cb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:cb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>db:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:db] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>eb:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:eb] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>E:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:E][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:E][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A9][:E][:c] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>F:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:F][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A9][:F][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A9][:F][:c] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= @contents[:A9][:F][:d] rescue '' %><br />
-&nbsp;&nbsp;<b>A10:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:f] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:g] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>h:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:h] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>j:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:A][:j] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b>
-<%= @contents[:A10][:B] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>C:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:C][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:C][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b_e:</b>
-<%= @contents[:A10][:C][:b_e] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:C][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c_e:</b>
-<%= @contents[:A10][:C][:c_e] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:C][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A10][:C][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e_e:</b>
-<%= @contents[:A10][:C][:e_e] rescue '' %><br />
-&nbsp;&nbsp;<b>A11:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>A:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= @contents[:A11][:A][:d] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>e:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:e] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>f:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:f] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>g:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:g] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>h:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:h] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>i:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:i] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>j:</b>
-<%= @contents[:A11][:A][:j] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>k:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:k] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>l:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:l] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>m:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:m] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>n:</b>
-<%= @contents[:A11][:A][:n] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>o:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:o] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>p:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:p] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>q:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:q] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>r:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:r] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>s:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:s] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>t:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:t] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>u:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:u] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>v:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:v] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>w:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:A][:w] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>x:</b>
-<%= @contents[:A11][:A][:x] rescue '' %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>B:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:B][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:B][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:B][:c] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>d:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A11][:B][:d] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;<b>A12:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A12][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A12][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A12][:c] rescue '' %><br />
-&nbsp;&nbsp;<b>A13:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>a:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A13][:a] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>b:</b>
-<%= check_box_tag 'b', 'b', ((@contents[:A13][:b] rescue 0)=='0' ? false : 1), disabled:true %><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>c:</b>
-<%= @contents[:A13][:c] rescue '' %><br />
-&nbsp;&nbsp;<b>A14:</b><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<b>approval_date:</b>
-<%= @contents[:A14][:approval_date] rescue '' %><br />
+<h2>PART A<br>
+      RESEARCH APPLICATION – BASIC INFORMATION</h2>
+    <div class=field>This application is being submitted for: <br />
+      <%= check_box_tag :full_board, '', (@contents[:full_board]=='1' rescue false) %>
+      Full Board Review
+      <%= check_box_tag :expedited, '', (@contents[:expedited]=='1' rescue false) %>
+      Expedited Review
+    </div>
+    <div class=form_header>A1. TITLE OF PROPOSAL</div><br />
+    <table class=form_cont><tr><td>
+        <div class=field>Title of Proposal<br />
+          <%= @contents[:A1][:title] rescue nil %>
+        </div>
+        <div class=field>short_title (50 characters - must contain keywords for identifying protocol)<br />
+          <%= @contents[:A1][:short_title] rescue nil %>
+        </div>
+    </td></tr></table>
+    <div class=form_header>A2. RESEARCH STAFF INFORMATION</div><br />
+    <table class=form_cont><tr><td>
+        <div class=field>Primary Investigator (PI)<br />
+          <%= User.find(@contents[:A2][:pi_id]).full_name rescue nil%>
+        </div>
+        
+        <div class=field>Main Contact<br />
+          <%= User.find(@contents[:A2][:main_contact_id]).full_name rescue nil%>
+        </div>
+    </td></tr></table>
+    <div class=form_header>A3. BASIC STUDY TYPE AND DESIGN INFORMATION</div><br />
+    <div class=field>
+        <table class=form_cont>
+          <tr>
+            <td>
+            <table>
+            <td>Study Type:<br> (check all that apply)</td>
+            <td>
+              <table>
+                <tr>
+                  <td><%= check_box_tag :a, '', (@contents[:A3][:type][:a]=='1' rescue false) %>Therapeutic</td>
+                  <td><%= check_box_tag :e, '', (@contents[:A3][:type][:e]=='1' rescue false) %>Diagnostic</td>
+                  <td><%= check_box_tag :i, '', (@contents[:A3][:type][:i]=='1' rescue false) %>Epidemiologic</td>
+                  <td><%= check_box_tag :m, '', (@contents[:A3][:type][:m]=='1' rescue false) %>Physiologic</td>
+                </tr>
+                <tr>
+                  <td><%= check_box_tag :b, '', (@contents[:A3][:type][:b]=='1' rescue false) %>Pilot</td>
+                  <td><%= check_box_tag :f, '', (@contents[:A3][:type][:f]=='1' rescue false) %>Survey</td>
+                  <td><%= check_box_tag :j, '', (@contents[:A3][:type][:j]=='1' rescue false) %>Registry</td>
+                  <td><%= check_box_tag :n, '', (@contents[:A3][:type][:n]=='1' rescue false) %>Medical Record Review</td>
+                </tr>
+                <tr>
+                  <td><%= check_box_tag :c, '', (@contents[:A3][:type][:c]=='1' rescue false) %>Discarded Tissue</td>
+                  <td><%= check_box_tag :g, '', (@contents[:A3][:type][:g]=='1' rescue false) %>Genetic Research</td>
+                  <td><%= check_box_tag :k, '', (@contents[:A3][:type][:k]=='1' rescue false) %>Gene Transfer</td>
+                  <td><%= check_box_tag :o, '', (@contents[:A3][:type][:o]=='1' rescue false) %>Educational Research</td>
+                </tr>
+                <tr>
+                  <td><%= check_box_tag :d, '', (@contents[:A3][:type][:d]=='1' rescue false) %>Creating a Data/<br>Tissue Repository</td>
+                  <td><%= check_box_tag :h, '', (@contents[:A3][:type][:h]=='1' rescue false) %>Program<br>Evaluation</td>
+                  <td><%= check_box_tag :l, '', (@contents[:A3][:type][:l]=='1' rescue false) %>Focus Groups</td>
+                  <td><%= check_box_tag :p, '', (@contents[:A3][:type][:p]=='1' rescue false) %>Other (explain):<%= @contents[:A3][:type][:p_e] rescue nil%></td>
+                </tr>
+              </table>
+            </table>
+          </td>
+          </tr>
+          <tr>
+            <td>
+                    Design (if Applicable): 
+                    <%= check_box_tag :a, '', (@contents[:A3][:design][:a]=='1' rescue false) %>Randomized
+                    <%= check_box_tag :b, '', (@contents[:A3][:design][:b]=='1' rescue false) %>Blind
+                    <%= check_box_tag :c, '', (@contents[:A3][:design][:c]=='1' rescue false) %>Double-Blind
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Phase (if applicable):
+                    <%= check_box_tag :i, '', (@contents[:A3][:phase][:i]=='1' rescue false) %>I
+                    <%= check_box_tag :i_ii, '', (@contents[:A3][:phase][:i_ii]=='1' rescue false) %>I/II
+                    <%= check_box_tag :ii, '', (@contents[:A3][:phase][:ii]=='1' rescue false) %>II
+                    <%= check_box_tag :ii_iii, '', (@contents[:A3][:phase][:ii_iii]=='1' rescue false) %>II/III
+                    <%= check_box_tag :iii, '', (@contents[:A3][:phase][:iii]=='1' rescue false) %>III
+                    <%= check_box_tag :iiii, '', (@contents[:A3][:phase][:iiii]=='1' rescue false) %>IV
+                    <%= check_box_tag :other, '', (@contents[:A3][:phase][:other]=='1' rescue false) %>Other (explain):
+                    <%= @contents[:A3][:phase][:other_e] rescue nil %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Placebo Control (if applicable): 
+                    <%= check_box_tag :placebo_yes, '', (@contents[:A3][:placebo_yes]=='1' rescue false) %>Yes
+                    <%= check_box_tag :placebo_no, '', (@contents[:A3][:placebo_no]=='1' rescue false) %>No
+                  </td>
+                </tr>
+            </td>
+          </tr>
+        </table>
+        </div>
+          
+        </div>
+    </div>
+    
+    <div class=form_header>A5. RESOURCES USED DURING STUDY</div><br />
+    <div class=field>
+      <table>
+      Check all that apply<br />
+      <table class=form_cont><tr><td>
+          <%= check_box_tag :nurse, '', (@contents[:A5][:nurse]=='1' rescue false) %>Assistance from BIDMC nursing personnel<br />
+          <%= check_box_tag :drugs, '', (@contents[:A5][:drugs]=='1' rescue false) %>Drugs<br />
+          <%= check_box_tag :xray, '', (@contents[:A5][:xray]=='1' rescue false) %>X-Ray or Radioactive Agent<br />
+          <%= check_box_tag :investigation, '', (@contents[:A5][:investigation]=='1' rescue false) %>Investigational Device<br />
+          <%= check_box_tag :lab, '', (@contents[:A5][:lab]=='1' rescue false) %>Laboratory testing: in-house or outside provider<br />
+          <%= check_box_tag :transfusion, '', (@contents[:A5][:transfusion]=='1' rescue false) %>Transfusion medicine products and services<br />
+          <%= check_box_tag :radio, '', (@contents[:A5][:radio]=='1' rescue false) %>Radiological Resources, including clinical and/or research<br />
+          <%= check_box_tag :clinical, '', (@contents[:A5][:clinical]=='1' rescue false) %>Clinical Research Center<br />
+          <%= check_box_tag :infectious, '', (@contents[:A5][:infectious]=='1' rescue false) %>Infectious Agents<br />
+          <%= check_box_tag :genetic, '', (@contents[:A5][:genetic]=='1' rescue false) %>Human Genetic Research<br />
+          <%= check_box_tag :hazardous, '', (@contents[:A5][:hazardous]=='1' rescue false) %>Hazardous Biological Agents<br />
+          <%= check_box_tag :expedited, '', (@contents[:A5][:expedited]=='1' rescue false) %>Expedited Review Assessment<br />
+          <%= check_box_tag :records, '', (@contents[:A5][:records]=='1' rescue false) %>Medical Records<br />
+          <%= check_box_tag :tissue, '', (@contents[:A5][:tissue]=='1' rescue false) %>Discarded Tissue<br />
+          <%= check_box_tag :other, '', (@contents[:A5][:other]=='1' rescue false) %>Other
+        </td></tr></table>
+    </table>
+    </div>
 <% end %>
 <% if @form.part == 'B' %>
   <p id='notice'><%= notice %></p>
@@ -562,7 +174,7 @@
 <% end %>
 <% if @form.part == 'E' %>
   <p id='notice'><%= notice %></p>
-<%= link_to 'Send to Departmental Representative', controller: 'forms', action: 'send_to_rep', id: @form.id %>
+<%= link_to 'Send to Departmental Representative', controller: 'forms', action: 'send_to_rep', id: @form.id %><br />
 &nbsp;&nbsp;<b>E1:</b><br />
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Investigational:</b>
 <%= check_box_tag 'b', 'b', ((@contents[:E1][:Investigational] rescue 0)=='0' ? false : 1), disabled:true %><br />
