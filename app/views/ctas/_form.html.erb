@@ -16,6 +16,9 @@
     <%= f.label :pi_id %><br />
     <%= f.select :pi_id, options_from_collection_for_select(users, :id, :email) %>
   </div>
+  <% @cta_relation = @cta.cta_relations.first
+  <%= "Add CIs: " %>
+  <%= select_tag :users, options_for_select(User.all.collect{|u| u.name, u.id}, selected: @cta_relation.users), :multiple => true %>
   <div class="actions">
     <%= f.submit %>
   </div>

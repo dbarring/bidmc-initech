@@ -12,13 +12,22 @@ Permission.find_or_create_by_name('cci').update_attributes({group_type: 1})
 Permission.find_or_create_by_name('investigator').update_attributes({group_type: 1})
 Permission.find_or_create_by_name('dep_rep').update_attributes({group_type: 1})
 User.find_by_email('admin@bidmc.com').user_groups << Permission.find_by_name('admin')
+User.find_by_email('investigator@bidmc.com').user_groups << Permission.find_by_name('investigator')
+User.find_by_email('cci@bidmc.com').user_groups << Permission.find_by_name('cci')
+User.find_by_email('radiologist@bidmc.com').user_groups << Permission.find_by_name('dep_rep')
+User.find_by_email('irb@bidmc.com').user_groups << Permission.find_by_name('irb')
+User.find_by_email('ccii@bidmc.com').user_groups << Permission.find_by_name('cci')
 
 if Cta.all.length == 0
 	Cta.create({pi_id:User.find_by_email('admin@bidmc.com').id, workflow_status: 0}) do |c|
 		Form.create({part: 'A', cta_id: c.id})
 		Form.create({part: 'B', cta_id: c.id})
-	end
-	Cta.create({pi_id:User.find_by_email('admin@bidmc.com').id, workflow_status: 0}) do |c|
-		Form.create({part: 'A', cta_id: c.id})
+    ci_relation = CtaRelation.create({name: 'ci', group_type: 2, cta_id: c.id})
+    cci_relation = CtaRelation.create({name: 'ci', group_type: 2, cta_id: c.id})
+    ci_relation.users << User.find_by_email('investigator@bidmc.com')
+    cci_relation.users << User.find_by_email('cci@bidmc.com')
+    cci_relation.users << User.find_by_email('ccii@bidmc.com')
+    ci_relation.save
+    cci_relation.save
 	end
 end
