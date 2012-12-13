@@ -1,881 +1,157 @@
 <% @contents = @form.hash_content %>
 <% if @form.part == 'A' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
-    <div class=field>full_board<br />
+    <br>
+    <br>
+    <h2>PART A<br>
+      RESEARCH APPLICATION – BASIC INFORMATION</h2>
+    <div class=field>This application is being submitted for: <br />
       <%= f.check_box :full_board, checked: (@contents[:full_board]=='1' rescue false) %>
-    </div>
-    <div class=field>expedited<br />
+      Full Board Review
       <%= f.check_box :expedited, checked: (@contents[:expedited]=='1' rescue false) %>
+      Expedited Review
     </div>
-    <div class=field>A1<br />
+    <div class=form_header>A1. TITLE OF PROPOSAL</div><br />
+    <table class=form_cont><tr><td>
       <%= f.fields_for :A1 do |fA1|%>
-        <div class=field>title<br />
+        <div class=field>Title of Proposal<br />
           <%= fA1.text_field :title, value: (@contents[:A1][:title] rescue nil) %>
         </div>
-        <div class=field>short_title<br />
+        <div class=field>short_title (50 characters - must contain keywords for identifying protocol)<br />
           <%= fA1.text_field :short_title, value: (@contents[:A1][:short_title] rescue nil) %>
         </div>
       <% end %>
-    </div>
-    <div class=field>A2<br />
+    </td></tr></table>
+    <div class=form_header>A2. RESEARCH STAFF INFORMATION</div><br />
+    <table class=form_cont><tr><td>
       <%= f.fields_for :A2 do |fA2|%>
-        <div class=field>pi_id<br />
-          <%= fA2.number_field :pi_id, value: (@contents[:A2][:pi_id] rescue nil) %>
+        <div class=field>Primary Investigator (PI)<br />
+          <%= fA2.select :pi_id, options_from_collection_for_select(@investigators, :id, :email, (@contents[:A2][:pi_id] rescue nil)), include_blank: true %>
         </div>
-        <div class=field>ci_ids<br />
+        <div class=field>Co-Investigator Study Staff Information<br />
+          List below all co-investigators and study staff participating in this study.<br />
           <%= fA2.fields_for :ci_ids do |fci_ids|%>
-            <div class=field>1<br />
+            <div class=field><%= fA2.number_field :ci_ids, value: (@contents[:A2][:ci_ids] rescue nil) %><br />
             </div>
           <% end %>
         </div>
-        <div class=field>main_contact_id<br />
-          <%= fA2.number_field :main_contact_id, value: (@contents[:A2][:main_contact_id] rescue nil) %>
+        <div class=field>Main Contact<br />
+          <%= fA2.select :main_contact_id, options_from_collection_for_select(@users, :id, :email, (@contents[:A2][:main_contact_id] rescue nil)), include_blank: true %>
         </div>
       <% end %>
-    </div>
-    <div class=field>A3<br />
+    </td></tr></table>
+    <div class=form_header>A3. BASIC STUDY TYPE AND DESIGN INFORMATION</div><br />
+    <div class=field>
       <%= f.fields_for :A3 do |fA3|%>
-        <div class=field>type<br />
-          <%= fA3.fields_for :type do |ftype|%>
-            <div class=field>a<br />
-              <%= ftype.check_box :a, checked: (@contents[:A3][:type][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= ftype.check_box :b, checked: (@contents[:A3][:type][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= ftype.check_box :c, checked: (@contents[:A3][:type][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= ftype.check_box :d, checked: (@contents[:A3][:type][:d]=='1' rescue false) %>
-            </div>
-            <div class=field>e<br />
-              <%= ftype.check_box :e, checked: (@contents[:A3][:type][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>f<br />
-              <%= ftype.check_box :f, checked: (@contents[:A3][:type][:f]=='1' rescue false) %>
-            </div>
-            <div class=field>g<br />
-              <%= ftype.check_box :g, checked: (@contents[:A3][:type][:g]=='1' rescue false) %>
-            </div>
-            <div class=field>h<br />
-              <%= ftype.check_box :h, checked: (@contents[:A3][:type][:h]=='1' rescue false) %>
-            </div>
-            <div class=field>i<br />
-              <%= ftype.check_box :i, checked: (@contents[:A3][:type][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>j<br />
-              <%= ftype.check_box :j, checked: (@contents[:A3][:type][:j]=='1' rescue false) %>
-            </div>
-            <div class=field>k<br />
-              <%= ftype.check_box :k, checked: (@contents[:A3][:type][:k]=='1' rescue false) %>
-            </div>
-            <div class=field>l<br />
-              <%= ftype.check_box :l, checked: (@contents[:A3][:type][:l]=='1' rescue false) %>
-            </div>
-            <div class=field>m<br />
-              <%= ftype.check_box :m, checked: (@contents[:A3][:type][:m]=='1' rescue false) %>
-            </div>
-            <div class=field>n<br />
-              <%= ftype.check_box :n, checked: (@contents[:A3][:type][:n]=='1' rescue false) %>
-            </div>
-            <div class=field>o<br />
-              <%= ftype.check_box :o, checked: (@contents[:A3][:type][:o]=='1' rescue false) %>
-            </div>
-            <div class=field>p<br />
-              <%= ftype.check_box :p, checked: (@contents[:A3][:type][:p]=='1' rescue false) %>
-            </div>
-            <div class=field>p_e<br />
-              <%= ftype.text_field :p_e, value: (@contents[:A3][:type][:p_e] rescue nil) %>
-            </div>
-          <% end %>
+        <table class=form_cont>
+          <tr>
+            <td>
+            <table>
+            <td>Study Type:<br> (check all that apply)</td>
+            <td>
+              <%= fA3.fields_for :type do |ftype|%>
+              <table>
+                <tr>
+                  <td><%= ftype.check_box :a, checked: (@contents[:A3][:type][:a]=='1' rescue false) %>Therapeutic</td>
+                  <td><%= ftype.check_box :e, checked: (@contents[:A3][:type][:e]=='1' rescue false) %>Diagnostic</td>
+                  <td><%= ftype.check_box :i, checked: (@contents[:A3][:type][:i]=='1' rescue false) %>Epidemiologic</td>
+                  <td><%= ftype.check_box :m, checked: (@contents[:A3][:type][:m]=='1' rescue false) %>Physiologic</td>
+                </tr>
+                <tr>
+                  <td><%= ftype.check_box :b, checked: (@contents[:A3][:type][:b]=='1' rescue false) %>Pilot</td>
+                  <td><%= ftype.check_box :f, checked: (@contents[:A3][:type][:f]=='1' rescue false) %>Survey</td>
+                  <td><%= ftype.check_box :j, checked: (@contents[:A3][:type][:j]=='1' rescue false) %>Registry</td>
+                  <td><%= ftype.check_box :n, checked: (@contents[:A3][:type][:n]=='1' rescue false) %>Medical Record Review</td>
+                </tr>
+                <tr>
+                  <td><%= ftype.check_box :c, checked: (@contents[:A3][:type][:c]=='1' rescue false) %>Discarded Tissue</td>
+                  <td><%= ftype.check_box :g, checked: (@contents[:A3][:type][:g]=='1' rescue false) %>Genetic Research</td>
+                  <td><%= ftype.check_box :k, checked: (@contents[:A3][:type][:k]=='1' rescue false) %>Gene Transfer</td>
+                  <td><%= ftype.check_box :o, checked: (@contents[:A3][:type][:o]=='1' rescue false) %>Educational Research</td>
+                </tr>
+                <tr>
+                  <td><%= ftype.check_box :d, checked: (@contents[:A3][:type][:d]=='1' rescue false) %>Creating a Data/<br>Tissue Repository</td>
+                  <td><%= ftype.check_box :h, checked: (@contents[:A3][:type][:h]=='1' rescue false) %>Program<br>Evaluation</td>
+                  <td><%= ftype.check_box :l, checked: (@contents[:A3][:type][:l]=='1' rescue false) %>Focus Groups</td>
+                  <td><%= ftype.check_box :p, checked: (@contents[:A3][:type][:p]=='1' rescue false) %>Other (explain):<%= ftype.text_field :p_e, value: (@contents[:A3][:type][:p_e] rescue nil) %></td>
+                </tr>
+              </table>
+              <% end %>
+            </table>
+          </td>
+          </tr>
+          <tr>
+            <td>
+                    <%= fA3.fields_for :design do |fdesign|%>
+                    Design (if Applicable): 
+                    <%= fdesign.check_box :a, checked: (@contents[:A3][:design][:a]=='1' rescue false) %>Randomized
+                    <%= fdesign.check_box :b, checked: (@contents[:A3][:design][:b]=='1' rescue false) %>Blind
+                    <%= fdesign.check_box :c, checked: (@contents[:A3][:design][:c]=='1' rescue false) %>Double-Blind
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= fA3.fields_for :phase do |fphase|%>
+                    Phase (if applicable):
+                    <%= fphase.check_box :i, checked: (@contents[:A3][:phase][:i]=='1' rescue false) %>I
+                    <%= fphase.check_box :i_ii, checked: (@contents[:A3][:phase][:i_ii]=='1' rescue false) %>I/II
+                    <%= fphase.check_box :ii, checked: (@contents[:A3][:phase][:ii]=='1' rescue false) %>II
+                    <%= fphase.check_box :ii_iii, checked: (@contents[:A3][:phase][:ii_iii]=='1' rescue false) %>II/III
+                    <%= fphase.check_box :iii, checked: (@contents[:A3][:phase][:iii]=='1' rescue false) %>III
+                    <%= fphase.check_box :iiii, checked: (@contents[:A3][:phase][:iiii]=='1' rescue false) %>IV
+                    <%= fphase.check_box :other, checked: (@contents[:A3][:phase][:other]=='1' rescue false) %>Other (explain):
+                    <%= fphase.text_field :other_e, value: (@contents[:A3][:phase][:other_e] rescue nil) %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Placebo Control (if applicable): 
+                    <%= fA3.check_box :placebo_yes, checked: (@contents[:A3][:placebo_yes]=='1' rescue false) %>Yes
+                    <%= fA3.check_box :placebo_no, checked: (@contents[:A3][:placebo_no]=='1' rescue false) %>No
+                  </td>
+                </tr>
+            </td>
+          </tr>
+        </table>
         </div>
-        <div class=field>design<br />
-          <%= fA3.fields_for :design do |fdesign|%>
-            <div class=field>a<br />
-              <%= fdesign.check_box :a, checked: (@contents[:A3][:design][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fdesign.check_box :b, checked: (@contents[:A3][:design][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fdesign.check_box :c, checked: (@contents[:A3][:design][:c]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>phase<br />
-          <%= fA3.fields_for :phase do |fphase|%>
-            <div class=field>i<br />
-              <%= fphase.check_box :i, checked: (@contents[:A3][:phase][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>i_ii<br />
-              <%= fphase.check_box :i_ii, checked: (@contents[:A3][:phase][:i_ii]=='1' rescue false) %>
-            </div>
-            <div class=field>ii<br />
-              <%= fphase.check_box :ii, checked: (@contents[:A3][:phase][:ii]=='1' rescue false) %>
-            </div>
-            <div class=field>ii_iii<br />
-              <%= fphase.check_box :ii_iii, checked: (@contents[:A3][:phase][:ii_iii]=='1' rescue false) %>
-            </div>
-            <div class=field>iii<br />
-              <%= fphase.check_box :iii, checked: (@contents[:A3][:phase][:iii]=='1' rescue false) %>
-            </div>
-            <div class=field>iiii<br />
-              <%= fphase.check_box :iiii, checked: (@contents[:A3][:phase][:iiii]=='1' rescue false) %>
-            </div>
-            <div class=field>other<br />
-              <%= fphase.check_box :other, checked: (@contents[:A3][:phase][:other]=='1' rescue false) %>
-            </div>
-            <div class=field>other_e<br />
-              <%= fphase.text_field :other_e, value: (@contents[:A3][:phase][:other_e] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>placebo<br />
-          <%= fA3.check_box :placebo, checked: (@contents[:A3][:placebo]=='1' rescue false) %>
+          
         </div>
       <% end %>
     </div>
-    <div class=field>A4<br />
-      <%= f.fields_for :A4 do |fA4|%>
-        <div class=field>A<br />
-          <%= fA4.fields_for :A do |fA|%>
-            <div class=field>ab<br />
-              <%= fA.check_box :ab, checked: (@contents[:A4][:A][:ab]=='1' rescue false) %>
-            </div>
-            <div class=field>ad<br />
-              <%= fA.date_select :ad, value: (@contents[:A4][:A][:ad] rescue nil) %>
-            </div>
-            <div class=field>bb<br />
-              <%= fA.check_box :bb, checked: (@contents[:A4][:A][:bb]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA4.fields_for :B do |fB|%>
-            <div class=field>ab<br />
-              <%= fB.check_box :ab, checked: (@contents[:A4][:B][:ab]=='1' rescue false) %>
-            </div>
-            <div class=field>as<br />
-              <%= fB.text_field :as, value: (@contents[:A4][:B][:as] rescue nil) %>
-            </div>
-            <div class=field>bs<br />
-              <%= fB.text_field :bs, value: (@contents[:A4][:B][:bs] rescue nil) %>
-            </div>
-            <div class=field>bb<br />
-              <%= fB.check_box :bb, checked: (@contents[:A4][:B][:bb]=='1' rescue false) %>
-            </div>
-            <div class=field>cb<br />
-              <%= fB.check_box :cb, checked: (@contents[:A4][:B][:cb]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>C<br />
-          <%= fA4.fields_for :C do |fC|%>
-            <div class=field>a1<br />
-              <%= fC.fields_for :a1 do |fa1|%>
-                <div class=field>conflict<br />
-                  <%= fa1.check_box :conflict, checked: (@contents[:A4][:C][:a1][:conflict]=='1' rescue false) %>
-                </div>
-                <div class=field>consulting<br />
-                  <%= fa1.check_box :consulting, checked: (@contents[:A4][:C][:a1][:consulting]=='1' rescue false) %>
-                </div>
-                <div class=field>management<br />
-                  <%= fa1.check_box :management, checked: (@contents[:A4][:C][:a1][:management]=='1' rescue false) %>
-                </div>
-                <div class=field>employment<br />
-                  <%= fa1.check_box :employment, checked: (@contents[:A4][:C][:a1][:employment]=='1' rescue false) %>
-                </div>
-                <div class=field>board_directors<br />
-                  <%= fa1.check_box :board_directors, checked: (@contents[:A4][:C][:a1][:board_directors]=='1' rescue false) %>
-                </div>
-                <div class=field>scientific_board<br />
-                  <%= fa1.check_box :scientific_board, checked: (@contents[:A4][:C][:a1][:scientific_board]=='1' rescue false) %>
-                </div>
-                <div class=field>stock<br />
-                  <%= fa1.check_box :stock, checked: (@contents[:A4][:C][:a1][:stock]=='1' rescue false) %>
-                </div>
-                <div class=field>royalties<br />
-                  <%= fa1.check_box :royalties, checked: (@contents[:A4][:C][:a1][:royalties]=='1' rescue false) %>
-                </div>
-                <div class=field>ip_rights<br />
-                  <%= fa1.check_box :ip_rights, checked: (@contents[:A4][:C][:a1][:ip_rights]=='1' rescue false) %>
-                </div>
-                <div class=field>author<br />
-                  <%= fa1.check_box :author, checked: (@contents[:A4][:C][:a1][:author]=='1' rescue false) %>
-                </div>
-                <div class=field>gift<br />
-                  <%= fa1.check_box :gift, checked: (@contents[:A4][:C][:a1][:gift]=='1' rescue false) %>
-                </div>
-                <div class=field>loan<br />
-                  <%= fa1.check_box :loan, checked: (@contents[:A4][:C][:a1][:loan]=='1' rescue false) %>
-                </div>
-                <div class=field>other<br />
-                  <%= fa1.check_box :other, checked: (@contents[:A4][:C][:a1][:other]=='1' rescue false) %>
-                </div>
-                <div class=field>other_explained<br />
-                  <%= fa1.text_field :other_explained, value: (@contents[:A4][:C][:a1][:other_explained] rescue nil) %>
-                </div>
-              <% end %>
-            </div>
-            <div class=field>a2<br />
-              <%= fC.check_box :a2, checked: (@contents[:A4][:C][:a2]=='1' rescue false) %>
-            </div>
-            <div class=field>a3<br />
-              <%= fC.fields_for :a3 do |fa3|%>
-                <div class=field>b<br />
-                  <%= fa3.check_box :b, checked: (@contents[:A4][:C][:a3][:b]=='1' rescue false) %>
-                </div>
-                <div class=field>s<br />
-                  <%= fa3.text_field :s, value: (@contents[:A4][:C][:a3][:s] rescue nil) %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A5<br />
+    
+    <div class=form_header>A5. RESOURCES USED DURING STUDY</div><br />
+    <div class=field>
+      <table>
       <%= f.fields_for :A5 do |fA5|%>
-        <div class=field>nurse<br />
-          <%= fA5.check_box :nurse, checked: (@contents[:A5][:nurse]=='1' rescue false) %>
-        </div>
-        <div class=field>drugs<br />
-          <%= fA5.check_box :drugs, checked: (@contents[:A5][:drugs]=='1' rescue false) %>
-        </div>
-        <div class=field>xray<br />
-          <%= fA5.check_box :xray, checked: (@contents[:A5][:xray]=='1' rescue false) %>
-        </div>
-        <div class=field>investigation<br />
-          <%= fA5.check_box :investigation, checked: (@contents[:A5][:investigation]=='1' rescue false) %>
-        </div>
-        <div class=field>lab<br />
-          <%= fA5.check_box :lab, checked: (@contents[:A5][:lab]=='1' rescue false) %>
-        </div>
-        <div class=field>transfusion<br />
-          <%= fA5.check_box :transfusion, checked: (@contents[:A5][:transfusion]=='1' rescue false) %>
-        </div>
-        <div class=field>radio<br />
-          <%= fA5.check_box :radio, checked: (@contents[:A5][:radio]=='1' rescue false) %>
-        </div>
-        <div class=field>clinical<br />
-          <%= fA5.check_box :clinical, checked: (@contents[:A5][:clinical]=='1' rescue false) %>
-        </div>
-        <div class=field>infectious<br />
-          <%= fA5.check_box :infectious, checked: (@contents[:A5][:infectious]=='1' rescue false) %>
-        </div>
-        <div class=field>genetic<br />
-          <%= fA5.check_box :genetic, checked: (@contents[:A5][:genetic]=='1' rescue false) %>
-        </div>
-        <div class=field>hazardous<br />
-          <%= fA5.check_box :hazardous, checked: (@contents[:A5][:hazardous]=='1' rescue false) %>
-        </div>
-        <div class=field>expedited<br />
-          <%= fA5.check_box :expedited, checked: (@contents[:A5][:expedited]=='1' rescue false) %>
-        </div>
-        <div class=field>records<br />
-          <%= fA5.check_box :records, checked: (@contents[:A5][:records]=='1' rescue false) %>
-        </div>
-        <div class=field>tissue<br />
-          <%= fA5.check_box :tissue, checked: (@contents[:A5][:tissue]=='1' rescue false) %>
-        </div>
-        <div class=field>other<br />
-          <%= fA5.check_box :other, checked: (@contents[:A5][:other]=='1' rescue false) %>
-        </div>
+      Check all that apply<br />
+      <table class=form_cont><tr><td>
+          <%= fA5.check_box :nurse, checked: (@contents[:A5][:nurse]=='1' rescue false) %>Assistance from BIDMC nursing personnel<br />
+          <%= fA5.check_box :drugs, checked: (@contents[:A5][:drugs]=='1' rescue false) %>Drugs<br />
+          <%= fA5.check_box :xray, checked: (@contents[:A5][:xray]=='1' rescue false) %>X-Ray or Radioactive Agent<br />
+          <%= fA5.check_box :investigation, checked: (@contents[:A5][:investigation]=='1' rescue false) %>Investigational Device<br />
+          <%= fA5.check_box :lab, checked: (@contents[:A5][:lab]=='1' rescue false) %>Laboratory testing: in-house or outside provider<br />
+          <%= fA5.check_box :transfusion, checked: (@contents[:A5][:transfusion]=='1' rescue false) %>Transfusion medicine products and services<br />
+          <%= fA5.check_box :radio, checked: (@contents[:A5][:radio]=='1' rescue false) %>Radiological Resources, including clinical and/or research<br />
+          <%= fA5.check_box :clinical, checked: (@contents[:A5][:clinical]=='1' rescue false) %>Clinical Research Center<br />
+          <%= fA5.check_box :infectious, checked: (@contents[:A5][:infectious]=='1' rescue false) %>Infectious Agents<br />
+          <%= fA5.check_box :genetic, checked: (@contents[:A5][:genetic]=='1' rescue false) %>Human Genetic Research<br />
+          <%= fA5.check_box :hazardous, checked: (@contents[:A5][:hazardous]=='1' rescue false) %>Hazardous Biological Agents<br />
+          <%= fA5.check_box :expedited, checked: (@contents[:A5][:expedited]=='1' rescue false) %>Expedited Review Assessment<br />
+          <%= fA5.check_box :records, checked: (@contents[:A5][:records]=='1' rescue false) %>Medical Records<br />
+          <%= fA5.check_box :tissue, checked: (@contents[:A5][:tissue]=='1' rescue false) %>Discarded Tissue<br />
+          <%= fA5.check_box :other, checked: (@contents[:A5][:other]=='1' rescue false) %>Other
+        </td></tr></table>
       <% end %>
+    </table>
     </div>
-    <div class=field>A6<br />
-      <%= f.fields_for :A6 do |fA6|%>
-        <div class=field>from<br />
-          <%= fA6.date_select :from, value: (@contents[:A6][:from] rescue nil) %>
-        </div>
-        <div class=field>to<br />
-          <%= fA6.date_select :to, value: (@contents[:A6][:to] rescue nil) %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A7<br />
-      <%= f.fields_for :A7 do |fA7|%>
-        <div class=field>A<br />
-          <%= fA7.fields_for :A do |fA|%>
-            <div class=field>others<br />
-              <%= fA.check_box :others, checked: (@contents[:A7][:A][:others]=='1' rescue false) %>
-            </div>
-            <div class=field>num<br />
-              <%= fA.number_field :num, value: (@contents[:A7][:A][:num] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA7.fields_for :B do |fB|%>
-            <div class=field>lead<br />
-              <%= fB.check_box :lead, checked: (@contents[:A7][:B][:lead]=='1' rescue false) %>
-            </div>
-            <div class=field>institutions<br />
-              <%= fB.fields_for :institutions do |finstitutions|%>
-                <div class=field>{:site=>"a", :irb=>true, :permission=>true, :irb_contact=>"a", :irb_approval=>true}<br />
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A8<br />
-      <%= f.fields_for :A8 do |fA8|%>
-        <div class=field>no_funding<br />
-          <%= fA8.check_box :no_funding, checked: (@contents[:A8][:no_funding]=='1' rescue false) %>
-        </div>
-        <div class=field>reason<br />
-          <%= fA8.text_field :reason, value: (@contents[:A8][:reason] rescue nil) %>
-        </div>
-        <div class=field>yes_funding<br />
-          <%= fA8.check_box :yes_funding, checked: (@contents[:A8][:yes_funding]=='1' rescue false) %>
-        </div>
-        <div class=field>industry<br />
-          <%= fA8.check_box :industry, checked: (@contents[:A8][:industry]=='1' rescue false) %>
-        </div>
-        <div class=field>federal<br />
-          <%= fA8.check_box :federal, checked: (@contents[:A8][:federal]=='1' rescue false) %>
-        </div>
-        <div class=field>foundation<br />
-          <%= fA8.check_box :foundation, checked: (@contents[:A8][:foundation]=='1' rescue false) %>
-        </div>
-        <div class=field>internal<br />
-          <%= fA8.check_box :internal, checked: (@contents[:A8][:internal]=='1' rescue false) %>
-        </div>
-        <div class=field>free<br />
-          <%= fA8.check_box :free, checked: (@contents[:A8][:free]=='1' rescue false) %>
-        </div>
-        <div class=field>A<br />
-          <%= fA8.fields_for :A do |fA|%>
-            <div class=field>industry<br />
-              <%= fA.check_box :industry, checked: (@contents[:A8][:A][:industry]=='1' rescue false) %>
-            </div>
-            <div class=field>industry_entity<br />
-              <%= fA.text_field :industry_entity, value: (@contents[:A8][:A][:industry_entity] rescue nil) %>
-            </div>
-            <div class=field>investigator_external<br />
-              <%= fA.check_box :investigator_external, checked: (@contents[:A8][:A][:investigator_external]=='1' rescue false) %>
-            </div>
-            <div class=field>investigator_external_entity<br />
-              <%= fA.text_field :investigator_external_entity, value: (@contents[:A8][:A][:investigator_external_entity] rescue nil) %>
-            </div>
-            <div class=field>investigator_internal<br />
-              <%= fA.check_box :investigator_internal, checked: (@contents[:A8][:A][:investigator_internal]=='1' rescue false) %>
-            </div>
-            <div class=field>investigator_internal_entity<br />
-              <%= fA.text_field :investigator_internal_entity, value: (@contents[:A8][:A][:investigator_internal_entity] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA8.fields_for :B do |fB|%>
-            <div class=field>office_name<br />
-              <%= fB.text_field :office_name, value: (@contents[:A8][:B][:office_name] rescue nil) %>
-            </div>
-            <div class=field>office_date<br />
-              <%= fB.date_select :office_date, value: (@contents[:A8][:B][:office_date] rescue nil) %>
-            </div>
-            <div class=field>ra_name<br />
-              <%= fB.text_field :ra_name, value: (@contents[:A8][:B][:ra_name] rescue nil) %>
-            </div>
-            <div class=field>ra_date<br />
-              <%= fB.date_select :ra_date, value: (@contents[:A8][:B][:ra_date] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>C<br />
-          <%= fA8.fields_for :C do |fC|%>
-            <div class=field>review<br />
-              <%= fC.check_box :review, checked: (@contents[:A8][:C][:review]=='1' rescue false) %>
-            </div>
-            <div class=field>approved<br />
-              <%= fC.check_box :approved, checked: (@contents[:A8][:C][:approved]=='1' rescue false) %>
-            </div>
-            <div class=field>supported<br />
-              <%= fC.check_box :supported, checked: (@contents[:A8][:C][:supported]=='1' rescue false) %>
-            </div>
-            <div class=field>other<br />
-              <%= fC.check_box :other, checked: (@contents[:A8][:C][:other]=='1' rescue false) %>
-            </div>
-            <div class=field>reason<br />
-              <%= fC.text_field :reason, value: (@contents[:A8][:C][:reason] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>D<br />
-          <%= fA8.fields_for :D do |fD|%>
-            <div class=field>dollars<br />
-              <%= fD.text_field :dollars, value: (@contents[:A8][:D][:dollars] rescue nil) %>
-            </div>
-            <div class=field>non_monetary<br />
-              <%= fD.text_field :non_monetary, value: (@contents[:A8][:D][:non_monetary] rescue nil) %>
-            </div>
-            <div class=field>one_site<br />
-              <%= fD.check_box :one_site, checked: (@contents[:A8][:D][:one_site]=='1' rescue false) %>
-            </div>
-            <div class=field>multi_site<br />
-              <%= fD.check_box :multi_site, checked: (@contents[:A8][:D][:multi_site]=='1' rescue false) %>
-            </div>
-            <div class=field>fed_grant_yes<br />
-              <%= fD.check_box :fed_grant_yes, checked: (@contents[:A8][:D][:fed_grant_yes]=='1' rescue false) %>
-            </div>
-            <div class=field>fed_grant_no<br />
-              <%= fD.check_box :fed_grant_no, checked: (@contents[:A8][:D][:fed_grant_no]=='1' rescue false) %>
-            </div>
-            <div class=field>institution<br />
-              <%= fD.text_field :institution, value: (@contents[:A8][:D][:institution] rescue nil) %>
-            </div>
-            <div class=field>defense<br />
-              <%= fD.check_box :defense, checked: (@contents[:A8][:D][:defense]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>E<br />
-          <%= fA8.fields_for :E do |fE|%>
-            <div class=field>b_y<br />
-              <%= fE.check_box :b_y, checked: (@contents[:A8][:E][:b_y]=='1' rescue false) %>
-            </div>
-            <div class=field>b_n<br />
-              <%= fE.check_box :b_n, checked: (@contents[:A8][:E][:b_n]=='1' rescue false) %>
-            </div>
-            <div class=field>s<br />
-              <%= fE.text_field :s, value: (@contents[:A8][:E][:s] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>F<br />
-          <%= fA8.fields_for :F do |fF|%>
-            <div class=field>grant<br />
-              <%= fF.number_field :grant, value: (@contents[:A8][:F][:grant] rescue nil) %>
-            </div>
-            <div class=field>g_date<br />
-              <%= fF.date_select :g_date, value: (@contents[:A8][:F][:g_date] rescue nil) %>
-            </div>
-            <div class=field>funded<br />
-              <%= fF.check_box :funded, checked: (@contents[:A8][:F][:funded]=='1' rescue false) %>
-            </div>
-            <div class=field>pending<br />
-              <%= fF.check_box :pending, checked: (@contents[:A8][:F][:pending]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>G<br />
-          <%= fA8.fields_for :G do |fG|%>
-            <div class=field>a<br />
-              <%= fG.check_box :a, checked: (@contents[:A8][:G][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fG.check_box :b, checked: (@contents[:A8][:G][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fG.check_box :c, checked: (@contents[:A8][:G][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fG.check_box :d, checked: (@contents[:A8][:G][:d]=='1' rescue false) %>
-            </div>
-            <div class=field>e<br />
-              <%= fG.check_box :e, checked: (@contents[:A8][:G][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>f<br />
-              <%= fG.check_box :f, checked: (@contents[:A8][:G][:f]=='1' rescue false) %>
-            </div>
-            <div class=field>g<br />
-              <%= fG.check_box :g, checked: (@contents[:A8][:G][:g]=='1' rescue false) %>
-            </div>
-            <div class=field>h<br />
-              <%= fG.check_box :h, checked: (@contents[:A8][:G][:h]=='1' rescue false) %>
-            </div>
-            <div class=field>i<br />
-              <%= fG.check_box :i, checked: (@contents[:A8][:G][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>j<br />
-              <%= fG.check_box :j, checked: (@contents[:A8][:G][:j]=='1' rescue false) %>
-            </div>
-            <div class=field>k<br />
-              <%= fG.check_box :k, checked: (@contents[:A8][:G][:k]=='1' rescue false) %>
-            </div>
-            <div class=field>l<br />
-              <%= fG.check_box :l, checked: (@contents[:A8][:G][:l]=='1' rescue false) %>
-            </div>
-            <div class=field>m<br />
-              <%= fG.check_box :m, checked: (@contents[:A8][:G][:m]=='1' rescue false) %>
-            </div>
-            <div class=field>n<br />
-              <%= fG.check_box :n, checked: (@contents[:A8][:G][:n]=='1' rescue false) %>
-            </div>
-            <div class=field>o<br />
-              <%= fG.check_box :o, checked: (@contents[:A8][:G][:o]=='1' rescue false) %>
-            </div>
-            <div class=field>p<br />
-              <%= fG.check_box :p, checked: (@contents[:A8][:G][:p]=='1' rescue false) %>
-            </div>
-            <div class=field>q<br />
-              <%= fG.check_box :q, checked: (@contents[:A8][:G][:q]=='1' rescue false) %>
-            </div>
-            <div class=field>r<br />
-              <%= fG.check_box :r, checked: (@contents[:A8][:G][:r]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A9<br />
-      <%= f.fields_for :A9 do |fA9|%>
-        <div class=field>A<br />
-          <%= fA9.fields_for :A do |fA|%>
-            <div class=field>a<br />
-              <%= fA.check_box :a, checked: (@contents[:A9][:A][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fA.check_box :b, checked: (@contents[:A9][:A][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fA.text_field :c, value: (@contents[:A9][:A][:c] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA9.fields_for :B do |fB|%>
-            <div class=field>a<br />
-              <%= fB.number_field :a, value: (@contents[:A9][:B][:a] rescue nil) %>
-            </div>
-            <div class=field>b<br />
-              <%= fB.number_field :b, value: (@contents[:A9][:B][:b] rescue nil) %>
-            </div>
-            <div class=field>c<br />
-              <%= fB.number_field :c, value: (@contents[:A9][:B][:c] rescue nil) %>
-            </div>
-            <div class=field>d<br />
-              <%= fB.number_field :d, value: (@contents[:A9][:B][:d] rescue nil) %>
-            </div>
-            <div class=field>e<br />
-              <%= fB.number_field :e, value: (@contents[:A9][:B][:e] rescue nil) %>
-            </div>
-            <div class=field>f<br />
-              <%= fB.number_field :f, value: (@contents[:A9][:B][:f] rescue nil) %>
-            </div>
-            <div class=field>g<br />
-              <%= fB.number_field :g, value: (@contents[:A9][:B][:g] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>C<br />
-          <%= fA9.fields_for :C do |fC|%>
-            <div class=field>a<br />
-              <%= fC.check_box :a, checked: (@contents[:A9][:C][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fC.check_box :b, checked: (@contents[:A9][:C][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fC.check_box :c, checked: (@contents[:A9][:C][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fC.check_box :d, checked: (@contents[:A9][:C][:d]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>D<br />
-          <%= fA9.fields_for :D do |fD|%>
-            <div class=field>a<br />
-              <%= fD.check_box :a, checked: (@contents[:A9][:D][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fD.check_box :b, checked: (@contents[:A9][:D][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fD.check_box :c, checked: (@contents[:A9][:D][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fD.check_box :d, checked: (@contents[:A9][:D][:d]=='1' rescue false) %>
-            </div>
-            <div class=field>e<br />
-              <%= fD.check_box :e, checked: (@contents[:A9][:D][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>f<br />
-              <%= fD.check_box :f, checked: (@contents[:A9][:D][:f]=='1' rescue false) %>
-            </div>
-            <div class=field>g<br />
-              <%= fD.check_box :g, checked: (@contents[:A9][:D][:g]=='1' rescue false) %>
-            </div>
-            <div class=field>h<br />
-              <%= fD.check_box :h, checked: (@contents[:A9][:D][:h]=='1' rescue false) %>
-            </div>
-            <div class=field>i<br />
-              <%= fD.check_box :i, checked: (@contents[:A9][:D][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>j<br />
-              <%= fD.check_box :j, checked: (@contents[:A9][:D][:j]=='1' rescue false) %>
-            </div>
-            <div class=field>k<br />
-              <%= fD.check_box :k, checked: (@contents[:A9][:D][:k]=='1' rescue false) %>
-            </div>
-            <div class=field>l<br />
-              <%= fD.check_box :l, checked: (@contents[:A9][:D][:l]=='1' rescue false) %>
-            </div>
-            <div class=field>m<br />
-              <%= fD.check_box :m, checked: (@contents[:A9][:D][:m]=='1' rescue false) %>
-            </div>
-            <div class=field>n<br />
-              <%= fD.check_box :n, checked: (@contents[:A9][:D][:n]=='1' rescue false) %>
-            </div>
-            <div class=field>o<br />
-              <%= fD.check_box :o, checked: (@contents[:A9][:D][:o]=='1' rescue false) %>
-            </div>
-            <div class=field>p<br />
-              <%= fD.check_box :p, checked: (@contents[:A9][:D][:p]=='1' rescue false) %>
-            </div>
-            <div class=field>q<br />
-              <%= fD.check_box :q, checked: (@contents[:A9][:D][:q]=='1' rescue false) %>
-            </div>
-            <div class=field>r<br />
-              <%= fD.check_box :r, checked: (@contents[:A9][:D][:r]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>ab<br />
-          <%= fA9.check_box :ab, checked: (@contents[:A9][:ab]=='1' rescue false) %>
-        </div>
-        <div class=field>bb<br />
-          <%= fA9.check_box :bb, checked: (@contents[:A9][:bb]=='1' rescue false) %>
-        </div>
-        <div class=field>cb<br />
-          <%= fA9.check_box :cb, checked: (@contents[:A9][:cb]=='1' rescue false) %>
-        </div>
-        <div class=field>db<br />
-          <%= fA9.check_box :db, checked: (@contents[:A9][:db]=='1' rescue false) %>
-        </div>
-        <div class=field>eb<br />
-          <%= fA9.check_box :eb, checked: (@contents[:A9][:eb]=='1' rescue false) %>
-        </div>
-        <div class=field>E<br />
-          <%= fA9.fields_for :E do |fE|%>
-            <div class=field>a<br />
-              <%= fE.check_box :a, checked: (@contents[:A9][:E][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fE.check_box :b, checked: (@contents[:A9][:E][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fE.text_field :c, value: (@contents[:A9][:E][:c] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>F<br />
-          <%= fA9.fields_for :F do |fF|%>
-            <div class=field>a<br />
-              <%= fF.check_box :a, checked: (@contents[:A9][:F][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fF.check_box :b, checked: (@contents[:A9][:F][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fF.text_field :c, value: (@contents[:A9][:F][:c] rescue nil) %>
-            </div>
-            <div class=field>d<br />
-              <%= fF.text_field :d, value: (@contents[:A9][:F][:d] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A10<br />
-      <%= f.fields_for :A10 do |fA10|%>
-        <div class=field>A<br />
-          <%= fA10.fields_for :A do |fA|%>
-            <div class=field>a<br />
-              <%= fA.check_box :a, checked: (@contents[:A10][:A][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fA.check_box :b, checked: (@contents[:A10][:A][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fA.check_box :c, checked: (@contents[:A10][:A][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fA.check_box :d, checked: (@contents[:A10][:A][:d]=='1' rescue false) %>
-            </div>
-            <div class=field>e<br />
-              <%= fA.check_box :e, checked: (@contents[:A10][:A][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>f<br />
-              <%= fA.check_box :f, checked: (@contents[:A10][:A][:f]=='1' rescue false) %>
-            </div>
-            <div class=field>g<br />
-              <%= fA.check_box :g, checked: (@contents[:A10][:A][:g]=='1' rescue false) %>
-            </div>
-            <div class=field>h<br />
-              <%= fA.check_box :h, checked: (@contents[:A10][:A][:h]=='1' rescue false) %>
-            </div>
-            <div class=field>i<br />
-              <%= fA.check_box :i, checked: (@contents[:A10][:A][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>j<br />
-              <%= fA.check_box :j, checked: (@contents[:A10][:A][:j]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA10.text_field :B, value: (@contents[:A10][:B] rescue nil) %>
-        </div>
-        <div class=field>C<br />
-          <%= fA10.fields_for :C do |fC|%>
-            <div class=field>a<br />
-              <%= fC.check_box :a, checked: (@contents[:A10][:C][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fC.check_box :b, checked: (@contents[:A10][:C][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>b_e<br />
-              <%= fC.text_field :b_e, value: (@contents[:A10][:C][:b_e] rescue nil) %>
-            </div>
-            <div class=field>c<br />
-              <%= fC.check_box :c, checked: (@contents[:A10][:C][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>c_e<br />
-              <%= fC.text_field :c_e, value: (@contents[:A10][:C][:c_e] rescue nil) %>
-            </div>
-            <div class=field>d<br />
-              <%= fC.check_box :d, checked: (@contents[:A10][:C][:d]=='1' rescue false) %>
-            </div>
-            <div class=field>e<br />
-              <%= fC.check_box :e, checked: (@contents[:A10][:C][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>e_e<br />
-              <%= fC.text_field :e_e, value: (@contents[:A10][:C][:e_e] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A11<br />
-      <%= f.fields_for :A11 do |fA11|%>
-        <div class=field>A<br />
-          <%= fA11.fields_for :A do |fA|%>
-            <div class=field>a<br />
-              <%= fA.check_box :a, checked: (@contents[:A11][:A][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fA.check_box :b, checked: (@contents[:A11][:A][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fA.check_box :c, checked: (@contents[:A11][:A][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fA.text_field :d, value: (@contents[:A11][:A][:d] rescue nil) %>
-            </div>
-            <div class=field>e<br />
-              <%= fA.check_box :e, checked: (@contents[:A11][:A][:e]=='1' rescue false) %>
-            </div>
-            <div class=field>f<br />
-              <%= fA.check_box :f, checked: (@contents[:A11][:A][:f]=='1' rescue false) %>
-            </div>
-            <div class=field>g<br />
-              <%= fA.check_box :g, checked: (@contents[:A11][:A][:g]=='1' rescue false) %>
-            </div>
-            <div class=field>h<br />
-              <%= fA.check_box :h, checked: (@contents[:A11][:A][:h]=='1' rescue false) %>
-            </div>
-            <div class=field>i<br />
-              <%= fA.check_box :i, checked: (@contents[:A11][:A][:i]=='1' rescue false) %>
-            </div>
-            <div class=field>j<br />
-              <%= fA.text_field :j, value: (@contents[:A11][:A][:j] rescue nil) %>
-            </div>
-            <div class=field>k<br />
-              <%= fA.check_box :k, checked: (@contents[:A11][:A][:k]=='1' rescue false) %>
-            </div>
-            <div class=field>l<br />
-              <%= fA.check_box :l, checked: (@contents[:A11][:A][:l]=='1' rescue false) %>
-            </div>
-            <div class=field>m<br />
-              <%= fA.check_box :m, checked: (@contents[:A11][:A][:m]=='1' rescue false) %>
-            </div>
-            <div class=field>n<br />
-              <%= fA.text_field :n, value: (@contents[:A11][:A][:n] rescue nil) %>
-            </div>
-            <div class=field>o<br />
-              <%= fA.check_box :o, checked: (@contents[:A11][:A][:o]=='1' rescue false) %>
-            </div>
-            <div class=field>p<br />
-              <%= fA.check_box :p, checked: (@contents[:A11][:A][:p]=='1' rescue false) %>
-            </div>
-            <div class=field>q<br />
-              <%= fA.check_box :q, checked: (@contents[:A11][:A][:q]=='1' rescue false) %>
-            </div>
-            <div class=field>r<br />
-              <%= fA.check_box :r, checked: (@contents[:A11][:A][:r]=='1' rescue false) %>
-            </div>
-            <div class=field>s<br />
-              <%= fA.check_box :s, checked: (@contents[:A11][:A][:s]=='1' rescue false) %>
-            </div>
-            <div class=field>t<br />
-              <%= fA.check_box :t, checked: (@contents[:A11][:A][:t]=='1' rescue false) %>
-            </div>
-            <div class=field>u<br />
-              <%= fA.check_box :u, checked: (@contents[:A11][:A][:u]=='1' rescue false) %>
-            </div>
-            <div class=field>v<br />
-              <%= fA.check_box :v, checked: (@contents[:A11][:A][:v]=='1' rescue false) %>
-            </div>
-            <div class=field>w<br />
-              <%= fA.check_box :w, checked: (@contents[:A11][:A][:w]=='1' rescue false) %>
-            </div>
-            <div class=field>x<br />
-              <%= fA.text_field :x, value: (@contents[:A11][:A][:x] rescue nil) %>
-            </div>
-          <% end %>
-        </div>
-        <div class=field>B<br />
-          <%= fA11.fields_for :B do |fB|%>
-            <div class=field>a<br />
-              <%= fB.check_box :a, checked: (@contents[:A11][:B][:a]=='1' rescue false) %>
-            </div>
-            <div class=field>b<br />
-              <%= fB.check_box :b, checked: (@contents[:A11][:B][:b]=='1' rescue false) %>
-            </div>
-            <div class=field>c<br />
-              <%= fB.check_box :c, checked: (@contents[:A11][:B][:c]=='1' rescue false) %>
-            </div>
-            <div class=field>d<br />
-              <%= fB.check_box :d, checked: (@contents[:A11][:B][:d]=='1' rescue false) %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A12<br />
-      <%= f.fields_for :A12 do |fA12|%>
-        <div class=field>a<br />
-          <%= fA12.check_box :a, checked: (@contents[:A12][:a]=='1' rescue false) %>
-        </div>
-        <div class=field>b<br />
-          <%= fA12.check_box :b, checked: (@contents[:A12][:b]=='1' rescue false) %>
-        </div>
-        <div class=field>c<br />
-          <%= fA12.text_field :c, value: (@contents[:A12][:c] rescue nil) %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A13<br />
-      <%= f.fields_for :A13 do |fA13|%>
-        <div class=field>a<br />
-          <%= fA13.check_box :a, checked: (@contents[:A13][:a]=='1' rescue false) %>
-        </div>
-        <div class=field>b<br />
-          <%= fA13.check_box :b, checked: (@contents[:A13][:b]=='1' rescue false) %>
-        </div>
-        <div class=field>c<br />
-          <%= fA13.text_field :c, value: (@contents[:A13][:c] rescue nil) %>
-        </div>
-      <% end %>
-    </div>
-    <div class=field>A14<br />
+    
+    <div class=form_header>A14. PRINCIPAL INVESTIGATOR CERTIFICATION AND SIGNATURE</div><br />
+    <div class=field>
       <%= f.fields_for :A14 do |fA14|%>
-        <div class=field>approval_date<br />
-          <%= fA14.date_select :approval_date, value: (@contents[:A14][:approval_date] rescue nil) %>
+        <div class=field>PI Password<br />
+          <%= password_field :password, '' %>
         </div>
       <% end %>
     </div>
@@ -884,6 +160,7 @@
 <% end %>
 <% if @form.part == 'B' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>B1<br />
       <%= f.text_field :B1, value: (@contents[:B1] rescue nil) %>
     </div>
@@ -933,6 +210,7 @@
 <% end %>
 <% if @form.part == 'C' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>Nursing<br />
       <%= f.check_box :Nursing, checked: (@contents[:Nursing]=='1' rescue false) %>
     </div>
@@ -965,6 +243,7 @@
 <% end %>
 <% if @form.part == 'E' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>E1<br />
       <%= f.fields_for :E1 do |fE1|%>
         <div class=field>Investigational<br />
@@ -1189,6 +468,7 @@
 <% end %>
 <% if @form.part == 'F' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>F1<br />
       <%= f.fields_for :F1 do |fF1|%>
         <div class=field>diagnostic_xray<br />
@@ -1254,6 +534,7 @@
 <% end %>
 <% if @form.part == 'G' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>G1<br />
       <%= f.fields_for :G1 do |fG1|%>
         <div class=field>authorized_users<br />
@@ -1429,6 +710,7 @@
 <% end %>
 <% if @form.part == 'J' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>J1<br />
       <%= f.fields_for :J1 do |fJ1|%>
         <div class=field>infectious_agent<br />
@@ -1541,6 +823,7 @@
 <% end %>
 <% if @form.part == 'K' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>K1<br />
       <%= f.fields_for :K1 do |fK1|%>
         <div class=field>pop_based<br />
@@ -1622,6 +905,7 @@
 <% end %>
 <% if @form.part == 'L' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>L1<br />
       <%= f.fields_for :L1 do |fL1|%>
         <div class=field>hazardous_agents<br />
@@ -1657,6 +941,7 @@
 <% end %>
 <% if @form.part == 'M' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>do_q1<br />
       <%= f.check_box :do_q1, checked: (@contents[:do_q1]=='1' rescue false) %>
     </div>
@@ -1734,6 +1019,7 @@
 <% end %>
 <% if @form.part == 'N' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>sample_type<br />
       <%= f.text_field :sample_type, value: (@contents[:sample_type] rescue nil) %>
     </div>
@@ -1821,6 +1107,7 @@
 <% end %>
 <% if @form.part == 'O' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>name_pi<br />
       <%= f.text_field :name_pi, value: (@contents[:name_pi] rescue nil) %>
     </div>
@@ -1896,6 +1183,7 @@
 <% end %>
 <% if @form.part == 'P' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>minimal_risk<br />
       <%= f.check_box :minimal_risk, checked: (@contents[:minimal_risk]=='1' rescue false) %>
     </div>
@@ -1942,6 +1230,7 @@
 <% end %>
 <% if @form.part == 'Q' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>information<br />
       <%= f.fields_for :information do |finformation|%>
         <div class=field>name<br />
@@ -2074,6 +1363,7 @@
 <% end %>
 <% if @form.part == 'W' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>rsi<br />
       <%= f.fields_for :rsi do |frsi|%>
         <div class=field>pi_name<br />
@@ -2243,6 +1533,7 @@
 <% end %>
 <% if @form.part == 'S' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
+    <%= submit_tag 'Save' %>
     <div class=field>full_board<br />
       <%= f.check_box :full_board, checked: (@contents[:full_board]=='1' rescue false) %>
     </div>
