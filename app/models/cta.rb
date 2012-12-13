@@ -37,5 +37,6 @@ class Cta < ActiveRecord::Base
 
   def set_status status #changes the status of the cta
     self.update_attributes({workflow_status: status })
+    #Notification.generate_dep_rep_notification('bidmc.com' , 'danbarring@gmail.com' , 'Clinical Trial Application #' + Cta.find(@form.cta_id).id + ' has reached the CCI review stage', 'CTA Status Update')
   end
 end

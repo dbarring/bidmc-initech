@@ -37,4 +37,8 @@
   <% end %>
 </table>
 
-<%= link_to "Submit to CCI", :controller => "ctas", :action => "set_status", :id=> @cta.id %>
+<%if (@cta.workflow_status == 0) %>
+  <%= link_to "Submit to CCI", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 1 %>
+<%elsif (@cta.workflow_status == 1) %>
+  <%= link_to "Submit to IRB", :controller => "ctas", :action => "set_status", :id=> @cta.id, :status => 2 %>
+<%end%>

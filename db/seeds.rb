@@ -24,13 +24,14 @@ Department.find_or_create_by_name('pharmacy').update_attributes({group_type: 3})
 User.find_by_email('pharmacy@bidmc.com').user_groups << Department.find_by_name('pharmacy')
 
 if Cta.all.length == 0
-	c = Cta.create({pi_id:User.find_by_email('admin@bidmc.com').id, workflow_status: 0})
+	c = Cta.create({pi_id:User.find_by_email('ccii@bidmc.com').id, workflow_status: 1})
 
 	Form.create({part: 'A', cta_id: c.id})
 	Form.create({part: 'E', cta_id: c.id})
   ci_relation = CtaRelation.create({name: 'ci', group_type: 2, cta_id: c.id})
   cci_relation = CtaRelation.create({name: 'cci', group_type: 2, cta_id: c.id})
   ci_relation.users << User.find_by_email('investigator@bidmc.com')
+  ci_relation.users << User.find_by_email('ccii@bidmc.com')
   cci_relation.users << User.find_by_email('cci@bidmc.com')
   cci_relation.users << User.find_by_email('ccii@bidmc.com')
   ci_relation.save
