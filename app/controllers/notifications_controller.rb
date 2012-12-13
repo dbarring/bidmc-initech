@@ -81,12 +81,27 @@ class NotificationsController < ApplicationController
     end
   end
 
+
+
+
+
   def generate_dep_rep_notification(from , to , message, subject) #generates and sends an email to member of department user group
-        
+    
+
+    @smtp_info = {
+    :smtp_server => "smtp.gmail.com",
+    :port => 587,
+    :domain => "gmail.com",
+    :username => "myEMAIL",
+    :password => "pass",
+    :authentication => "plain" , 
+    :enable_starttls_auto => true
+    }
+
 
     begin 
           Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
-          Net::SMTP.start(@smtp_info[:smtp_server], @smtp_info[:port], @smtp_info[:helo], @smtp_info[:username], @smtp_info[:password], @smtp_info[:authentication]) do |smtp|
+          Net::SMTP.start(@smtp_info[:smtp_server], @smtp_info[:port], @smtp_info[:domain], @smtp_info[:username], @smtp_info[:password], @smtp_info[:authentication]) do |smtp|
             
           mailtext = <<EOF
             From: #{from}
