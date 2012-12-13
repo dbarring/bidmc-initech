@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if (!current_user.has_permission?('admin'))
+      redirect_to :back
+    end
     @users = User.all
 
     respond_to do |format|
@@ -36,6 +39,9 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    if (!current_user.has_permission?('admin') and @user.id != current_user.id)
+      redirect_to :back
+    end
     @current_permissions = @user.user_groups.all
     @permissions = UserGroup.find_all_by_group_type(1)
   end
@@ -93,6 +99,9 @@ class UsersController < ApplicationController
   end
 
   def search #filters results based on params, renders search result page
+    if (!current_user.has_permission?('admin'))
+      redirect_to :back
+    end
     @search = params[:search].first rescue nil
     searches = @search.split(' ') rescue []
     @results = []

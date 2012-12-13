@@ -52,7 +52,18 @@ class FormsController < ApplicationController
   # PUT /forms/1
   # PUT /forms/1.json
   def update
+    UserGroup.new
     @form = Form.find(params[:id])
+    unless (params[:ci_users].nil?)
+      params[:ci_users].each do |p|
+        CtaRelation.find_by_name_and_cta_id('ci',@form.cta_id).users << User.find(p)
+      end
+    end
+    unless (params[:cci_users].nil?)
+      params[:cci_users].each do |p|
+        CtaRelation.find_by_name_and_cta_id('ci',@form.cta_id).users << User.find(p)
+      end
+    end
 
     respond_to do |format|
       if @form.update_attribute(:content, params[:content])

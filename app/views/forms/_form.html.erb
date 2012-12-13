@@ -1,4 +1,5 @@
 <% @contents = @form.hash_content %>
+<%UserGroup.new%>
 <% if @form.part == 'A' %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
     <br>
@@ -30,10 +31,7 @@
         </div>
         <div class=field>Co-Investigator Study Staff Information<br />
           List below all co-investigators and study staff participating in this study.<br />
-          <%= fA2.fields_for :ci_ids do |fci_ids|%>
-            <div class=field><%= fA2.number_field :ci_ids, value: (@contents[:A2][:ci_ids] rescue nil) %><br />
-            </div>
-          <% end %>
+            <%= select_tag :ci_users, options_for_select(User.all.collect{|u| [u.email, u.id]}, selected: CtaRelation.find_by_name_and_cta_id('ci', @form.cta_id).users.collect{|u| [u.email, u.id]}), :multiple => true %>
         </div>
         <div class=field>Main Contact<br />
           <%= fA2.select :main_contact_id, options_from_collection_for_select(@users, :id, :email, (@contents[:A2][:main_contact_id] rescue nil)), include_blank: true %>

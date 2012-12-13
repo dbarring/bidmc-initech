@@ -1,5 +1,5 @@
 class UserGroup < ActiveRecord::Base
-  attr_accessible :name, :group_type
+  attr_accessible :name, :group_type, :cta_id
   has_and_belongs_to_many :users
 
 
@@ -24,8 +24,6 @@ class Permission < UserGroup
 end
 
 class CtaRelation < UserGroup
-  belongs_to :cta
-
   def self.model_name
     UserGroup.model_name
   end

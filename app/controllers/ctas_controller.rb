@@ -26,7 +26,15 @@ class CtasController < ApplicationController
   # GET /ctas/new
   # GET /ctas/new.json
   def new
+    UserGroup.new
     @cta = Cta.create({workflow_status: 0, pi_id: current_user.id})
+    ci_relation = CtaRelation.new(name: 'ci', group_type: 2, cta_id: @cta.id)
+    cci_relation = CtaRelation.new(name: 'cci', group_type: 2, cta_id: @cta.id)
+    ci_relation.save
+    cci_relation.save
+    ci_relation.users << current_user
+    ci_relation.save
+    cci_relation.save
     redirect_to (@cta.add_form 'A'), action: :edit
   end
 
@@ -39,7 +47,20 @@ class CtasController < ApplicationController
   # POST /ctas.json
   def create
     params[:cta][:workflow_status] = 0
+    UserGroup.new
     @cta = Cta.new(params[:cta])
+    ci_relation = CtaRelation.new(name: 'ci', group_type: 2, cta_id: @cta.id)
+    cci_relation = CtaRelation.new(name: 'cci', group_type: 2, cta_id: @cta.id)
+    ci_relation.save
+    cci_relation.save
+    params[:ci_users].each do |p|
+      ci_relation.users << User.find(p)
+    end
+    params[:cci_users].each do |p|
+      cci_relation.users << User.find(p)
+    end
+    ci_relation.save
+    cci_relation.save
 
     respond_to do |format|
       if @cta.save
@@ -56,6 +77,10 @@ class CtasController < ApplicationController
   # PUT /ctas/1.json
   def update
     @cta = Cta.find(params[:id])
+    params[:users].each do |p|
+      @cta.cta_relations.first.users << UserGroup.find(p)
+    end
+    @user.user_groups.uniq!
 
     respond_to do |format|
       if @cta.update_attributes(params[:cta])

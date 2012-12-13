@@ -2,14 +2,13 @@ class Cta < ActiveRecord::Base
   attr_accessible :pi_id, :workflow_status # 0(drafting) 1(cci) 2(irb) 3(approved) 4(denied)
 
   has_many :forms
-  has_one :cta_relation
 
   def cis #returns all Users that are cis on cta
-    return []
+    return CtaRelation.find_all_by_name_and_cta_id('ci', self.cta_id)
   end
 
   def ccis #retunrs all Users that are ccis on the cta
-    return []
+    return CtaRelation.find_all_by_name_and_cta_id('cci', self.cta_id)
   end
 
   def name #returns the name of the cta, must be gotten from its form a
