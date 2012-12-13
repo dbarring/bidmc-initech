@@ -40,6 +40,7 @@ class CtasController < ApplicationController
   def create
     params[:cta][:workflow_status] = 0
     @cta = Cta.new(params[:cta])
+    @cta.cta_relation = new CtaRelation(name: 'Cta_'+@cta.id, group_type: 2)
 
     respond_to do |format|
       if @cta.save

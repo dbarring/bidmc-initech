@@ -49,4 +49,6 @@
 <br />
 
 <%= link_to 'New Cta', new_cta_path %> <br>
-<%= link_to 'Admin Panel', controller: 'users', action: 'index' %>
+<%if (current_user.has_permission?('admin'))%>
+  <%= link_to 'Admin Panel', controller: 'users', action: 'index' %>
+<%end%>
