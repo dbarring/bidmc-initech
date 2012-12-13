@@ -1,5 +1,5 @@
 class Cta < ActiveRecord::Base
-  attr_accessible :pi_id, :workflow_status
+  attr_accessible :pi_id, :workflow_status # 0(drafting) 1(cci) 2(irb) 3(approved) 4(denied)
 
   has_many :forms
   has_one :cta_relation
@@ -24,7 +24,7 @@ class Cta < ActiveRecord::Base
     return Form.find_by_cta_id_and_part(self.id, part)
   end
 
-  def forms #reutnrs all forms that are associated with the cta
+  def forms #returns all forms that are associated with the cta
     return Form.find_all_by_cta_id(self.id)
   end
 
@@ -32,7 +32,7 @@ class Cta < ActiveRecord::Base
     return CTA_STATUS[self.workflow_status]
   end
 
-  def set_status #changes the status of the cta
-    
+  def set_status status #changes the status of the cta
+    self.update_attributes({workflow_status: status })
   end
 end

@@ -89,7 +89,9 @@ class CtasController < ApplicationController
   end
 
   def set_status #changes the approval stage of the cta
-
+      @cta = Cta.find_by_id(params[:id]) rescue nil
+      @cta.set_status 1 unless @cta == nil # cci
+      redirect_to :action => "show", :id => @cta.id
   end
   
   def add_ci #adds user to cta as ci

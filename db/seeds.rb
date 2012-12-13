@@ -12,7 +12,6 @@ Permission.find_or_create_by_name('irb').update_attributes({group_type: 1})
 Permission.find_or_create_by_name('cci').update_attributes({group_type: 1})
 Permission.find_or_create_by_name('investigator').update_attributes({group_type: 1})
 Permission.find_or_create_by_name('dep_rep').update_attributes({group_type: 1})
-Permission.find_or_create_by_name()
 User.find_by_email('admin@bidmc.com').user_groups << Permission.find_by_name('admin')
 
 if Cta.all.length == 0
