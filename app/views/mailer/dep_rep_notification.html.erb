@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @user.full_name %>, your action is required.</h1>
+    <p>
+      Your action is required on <%=link_to 'Form '+@form.part, @form%>. The form has been signed out, and you have exclusive editing rights.
+    </p>
+  </body>
+</html>
