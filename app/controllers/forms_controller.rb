@@ -89,6 +89,13 @@ class FormsController < ApplicationController
     end
   end
 
+  def send_to_rep
+    @form = Form.find(params[:id])
+    if (@form.part == 'E')
+      Notification.generate_dep_rep_notification('bidmc.com' , 'danbarring@gmail.com' , 'Form E of Clinical Trial Application #' + Cta.find(@form.cta_id).id + ' requires your approval', 'CTA Signature Notification')
+    end
+  end
+
   def check_in #sets editor_id to nil, freeing form up for editting
 
   end

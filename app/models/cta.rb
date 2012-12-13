@@ -4,11 +4,15 @@ class Cta < ActiveRecord::Base
   has_many :forms
 
   def cis #returns all Users that are cis on cta
-    return CtaRelation.find_all_by_name_and_cta_id('ci', self.cta_id)
+    unless (CtaRelation.find_all_by_name_and_cta_id('ci', self.id).nil?)
+      return CtaRelation.find_all_by_name_and_cta_id('ci', self.id).first.users
+    end
   end
 
   def ccis #retunrs all Users that are ccis on the cta
-    return CtaRelation.find_all_by_name_and_cta_id('cci', self.cta_id)
+    unless (CtaRelation.find_all_by_name_and_cta_id('cci', self.id).nil?)
+      return CtaRelation.find_all_by_name_and_cta_id('cci', self.id).first.users
+    end
   end
 
   def name #returns the name of the cta, must be gotten from its form a

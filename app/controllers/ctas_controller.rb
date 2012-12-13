@@ -13,6 +13,7 @@ class CtasController < ApplicationController
   # GET /ctas/1
   # GET /ctas/1.json
   def show
+    UserGroup.new
     @cta = Cta.find(params[:id])
     @cis = @cta.cis
     @forms = @cta.forms

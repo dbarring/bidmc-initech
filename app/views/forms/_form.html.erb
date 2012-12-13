@@ -240,6 +240,7 @@
   <% end %>
 <% end %>
 <% if @form.part == 'E' %>
+  <%= link_to 'Send to Departmental Representative', controller: 'forms', action: 'send_to_rep', id: @form.id %>
   <%= form_for :content, url: {action: 'update'}, method: 'PUT' do |f|%>
     <%= submit_tag 'Save' %>
     <div class=field>E1<br />

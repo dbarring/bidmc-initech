@@ -33,6 +33,7 @@ BidmcInitech::Application.routes.draw do
       get 'printable'
       post 'add_note'
       post 'version_revert'
+      get 'send_to_rep'
     end
   end
 
